@@ -1,0 +1,14 @@
+[include]
+    path = ~/.gitconfig.local
+
+[color]
+    ui = true
+[core]
+    editor = vim
+    trustctime = false
+[credential]
+    helper = cache --timeout=86400
+[merge]
+    tool = vimdiff
+[push]
+    default = upstream
