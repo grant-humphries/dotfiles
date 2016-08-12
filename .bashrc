@@ -1,8 +1,3 @@
-# environment variables that effect where files are put by default, where '~'
-# maps to, and the starting directory on launch
-export HOMEDRIVE='/c'
-export HOMEPATH='/Users/humphrig'
-
 # these aliases are in place to counter the interactive python bug that exists
 # in msys2, detailed here: http://stackoverflow.com/questions/32597209
 #alias python='winpty python'
