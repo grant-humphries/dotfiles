@@ -4,6 +4,9 @@
 [color]
     ui = true
 [core]
+    # since most windows apps can handle unix line endings its best to
+    # just leave them alone rather than automatically converting them
+    autocrlf = false
     editor = vim
     trustctime = false
 [credential]
