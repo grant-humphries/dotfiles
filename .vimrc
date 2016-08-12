@@ -20,4 +20,5 @@ else
     set backupdir=$TEMP,$TMP,.
     set directory=$TEMP,$TMP,.
     set undodir=$TEMP,$TMP,.
+endif
 
