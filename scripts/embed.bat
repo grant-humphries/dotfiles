@@ -14,8 +14,7 @@ set etc_profile=!BABUN_HOME!\etc\profile
 set bashrc=!USER_HOME!\.bashrc
 set bash_login=!USER_HOME!\.bash_login
 set profile=!USER_HOME!\.profile
-::set temp_bashrc=!TEMP!\.temp_bashrc
-set temp_bashrc=C:\Users\humphrig\Desktop\temp\test_bashrc.sh
+set temp_bashrc=!TEMP!\.temp_bashrc
 set bash=!BABUN_HOME!\bin\bash
 
 :: create temp bashrc that changes the directory then takes the actions
