@@ -24,3 +24,5 @@ shopt -s histappend
 # save and reload history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"
 
+# make globbing case insensitive
+shopt -s nocaseglob

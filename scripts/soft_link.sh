@@ -6,14 +6,15 @@ set -e
 dot_files=( 
     '.bash_profile' 
     '.bashrc' 
-    '.gitconfig' 
+    '.inputrc'
+    '.gitconfig'
     '.minttyrc'
     '.vimrc'
 )
 
 old_dotfiles="${HOME}/old_dotfiles"
 mkdir -p "${old_dotfiles}"
-dotfiles_repo="$(dirname $(dirname $(pwd)${0#.}))"
+dotfiles_repo="$( cd  $(dirname ${0}); dirname $(pwd -P) )"
 
 for df in "${dot_files[@]}"; do
     existing_df="${HOME}/${df}"
