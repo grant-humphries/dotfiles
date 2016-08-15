@@ -1,6 +1,3 @@
-[include]
-    path = ~/.gitconfig.local
-
 [color]
     ui = true
 [core]
@@ -15,3 +12,6 @@
     tool = vimdiff
 [push]
     default = upstream
+
+[include]
+    path = ~/.gitconfig.local
