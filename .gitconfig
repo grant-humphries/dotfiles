@@ -3,7 +3,7 @@
 [core]
     # since most windows apps can handle unix line endings its best to
     # just leave them alone rather than automatically converting them
-    autocrlf = false
+    autocrlf = input
     editor = vim
     trustctime = false
 [credential]
