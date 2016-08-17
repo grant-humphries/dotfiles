@@ -1,17 +1,23 @@
 # load system readline/input settings
 $include /etc/inputrc
 
-# uses visual bell instead of audio
-set bell-style visible
+$if Bash
+    # uses visual bell instead of audio
+    set bell-style visible
 
-# sets autocomplete as case insensitive
-set completion-ignore-case on
+    # sets autocomplete as case insensitive
+    set completion-ignore-case on
 
-# appends slash to end of symlinked directories on autocomplete
-set mark-symlinked-directories on
+    # user prompted to display all matching options if there are
+    # greater than this number
+    set completion-query-items 15
 
-# will match files beginning with '.' w/o supplying that character
-set match-hidden-files on
+    # appends slash to end of symlinked directories on autocomplete
+    set mark-symlinked-directories on
 
-# for auto complete list all match options
-set show-all-if-ambiguous
+    # will match files beginning with '.' w/o supplying that character
+    set match-hidden-files on
+
+    # for auto complete list all match options
+    set show-all-if-ambiguous
+$endif
