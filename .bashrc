@@ -10,7 +10,7 @@ alias lal='ls -al'
 alias node='node --use_strict'
 
 # windows/cygwin specific
-if [[ "${OSTYPE}" == cygwin ]]; then
+if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # these aliases are in place to counter the interactive python bug
     # that exists in msys2, detailed here:
     # http://stackoverflow.com/questions/32597209
@@ -42,6 +42,19 @@ fi
 #BABUN_PS1="\[\033[00;34m\]{ \[\033[01;34m\]\W \[\033[00;34m\]}\[\033[01;32m\] \$( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo "" ) \[\033[01;31m\]» \[\033[00m\]"
 
 #----------------------------------------------------------------------
+# Environment Variables
+#----------------------------------------------------------------------
+
+# windows/cygwin specific
+if [[ "${OSTYPE}" == 'cygwin' ]]; then
+    # by default this variable is set to a directory that doesn't have
+    # adequate permissions, it is a temporary directory where setuptools
+    # unzips eggs
+    export PYTHON_EGG_CACHE='/tmp/python_eggs'
+    mkdir -p "${PYTHON_EGG_CACHE}"
+fi
+
+#----------------------------------------------------------------------
 # Functions
 #----------------------------------------------------------------------
 
@@ -51,7 +64,7 @@ fi
 cd() {
     cmd="${@}"
 
-    if [[ "${@}" =~ \.{3,} ]]; then
+    if [[ "${@}" =~ ^\.{3,}$ ]]; then
         cmd=''
         levels="${#1}"
 
