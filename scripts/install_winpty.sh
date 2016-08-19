@@ -22,10 +22,10 @@ clone() {
     # clone the winpty repo
     cd "${TMP}"
     git clone "${winpty_github}"
-    cd "./${winpty_dir}"
 }
 
 compile() {
+    cd "${TMP}/${winpty_dir}"
     ./configure
     make
     make install PREFIX="${install_dir}"
