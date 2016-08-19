@@ -10,8 +10,9 @@ winpty_dir=$(basename "${winpty_github}" '.git' )
 install_dir="${HOME}"
 
 dependencies() {
-    # install dependencies with babun's pact, not that gcc-g++ and gcc-core
-    # must be at the same version, this should take care of that
+    # install dependencies with babun's pact, note that gcc-g++ and
+    # gcc-core must be at the same version, this should take care of
+    # that
     pact install mingw64-i686-gcc-g++
     pact install gcc-g++
     pact upgrade gcc-core
