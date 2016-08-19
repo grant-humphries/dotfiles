@@ -22,7 +22,7 @@ clone() {
     # clone the winpty repo
     cd "${TMP}"
     git clone "${winpty_github}"
-    cd "${TMP}/${winpty_dir}"
+    cd "./${winpty_dir}"
 }
 
 compile() {
