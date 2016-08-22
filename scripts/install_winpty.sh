@@ -15,13 +15,15 @@ dependencies() {
     # that
     pact install mingw64-i686-gcc-g++
     pact install gcc-g++
-    pact upgrade gcc-core
+    pact update gcc-core
 }
 
 clone() {
-    # clone the winpty repo
-    cd "${TMP}"
-    git clone "${winpty_github}"
+    if [ ! -d "${TMP}/${winpty_dir}" ]; then
+        # clone the winpty repo
+        cd "${TMP}"
+        git clone "${winpty_github}"
+    fi
 }
 
 compile() {
