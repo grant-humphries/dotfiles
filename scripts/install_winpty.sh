@@ -7,7 +7,7 @@ set -e
 
 winpty_github='https://github.com/rprichard/winpty.git'
 winpty_dir=$(basename "${winpty_github}" '.git' )
-install_dir="${HOME}"
+install_dir="${HOME}/.local"
 
 dependencies() {
     # install dependencies with babun's pact, note that gcc-g++ and
