@@ -12,6 +12,8 @@
     tool = vimdiff
 [push]
     default = upstream
+[tag]
+    sort = version:refname
 
 [include]
     path = ~/.gitconfig.local
