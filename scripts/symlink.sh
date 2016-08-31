@@ -3,7 +3,7 @@
 # exit script on any error
 set -e
 
-dot_files=( 
+dotfiles=(
     '.bash_profile' 
     '.bashrc' 
     '.inputrc'
@@ -12,20 +12,36 @@ dot_files=(
     '.vimrc'
 )
 
-old_dotfiles="${HOME}/old_dotfiles"
-mkdir -p "${old_dotfiles}"
+win_unix=( 'cygwin' 'msys' )
+old_dotfiles="${TMP}/old_dotfiles"
 dotfiles_repo=$( cd  $(dirname ${0}); dirname $(pwd -P) )
 
-for df in "${dot_files[@]}"; do
+mkdir -p "${old_dotfiles}"
+
+for df in "${dotfiles[@]}"; do
     # .minttyrc is only used on windows
-    if [[ "${OSTYPE}" != 'cygwin' && "${df}" == '.minttyrc' ]]; then
+    if [[ ! "${win_unix[@]}" =~ "${OSTYPE}" && "${df}" == '.minttyrc' ]]; then
         continue
     fi
 
-    existing_df="${HOME}/${df}"
-    if [ -f "${existing_df}" ]; then
-        mv "${existing_df}" "${old_dotfiles}/"
+    target="${dotfiles_repo}/${df}"
+    link="${HOME}/${df}"
+
+    # check if file or symlink already exists in link location
+    if [ -e "${link}" ]; then
+        mv "${link}" "${old_dotfiles}/"
+        mv_flag=1
     fi
-    
-    ln -sf "${dotfiles_repo}/${df}" "${HOME}/${df}"
+
+    # if in running msys a windows symlink must be created
+    if [[ "${OSTYPE}" == 'msys' ]]; then
+        cmd //c mklink "$(cygpath -w ${link})" "$(cygpath -w ${target})"
+    else
+        ln -s "${target}" "${link}"
+    fi
 done
+
+if [ -n "${mv_flag}" ]; then
+    echo 'some dotfiles already existed in your home directory, they have '
+    echo "moved to the following directory: ${old_dotfiles}"
+fi

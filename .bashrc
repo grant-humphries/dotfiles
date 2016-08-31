@@ -10,7 +10,7 @@ alias lal='ls -al'
 alias node='node --use_strict'
 
 # windows/cygwin specific
-if [[ "${OSTYPE}" == 'cygwin' ]]; then
+if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
     # these aliases are in place to counter the interactive python bug
     # that exists in msys2, detailed here:
     # http://stackoverflow.com/questions/32597209
