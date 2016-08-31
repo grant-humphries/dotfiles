@@ -30,7 +30,7 @@ fi
 #----------------------------------------------------------------------
 
 # mac os x specific
-if [[ "${OSTYPE}" =~ darwin ]]; then
+if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # enable colors in terminal and set 'ls' colors
     export CLICOLOR=1
     export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -52,6 +52,12 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # unzips eggs
     export PYTHON_EGG_CACHE='/tmp/python_eggs'
     mkdir -p "${PYTHON_EGG_CACHE}"
+fi
+
+if [[ "${OSTYPE}" =~ 'darwin' ]]; then
+    # these variables aren't set by default in mac os x
+    export TMP='/tmp'
+    export TEMP='/tmp'
 fi
 
 #----------------------------------------------------------------------
