@@ -82,6 +82,11 @@ cd() {
     builtin cd "${cmd}"
 }
 
+# print each file path in the PATH environment variable on separate line
+path() {
+    echo "${PATH//:/$'\n'}"
+}
+
 #----------------------------------------------------------------------
 # Path Adjustments
 #----------------------------------------------------------------------
