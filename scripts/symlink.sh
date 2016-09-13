@@ -13,7 +13,7 @@ dotfiles=(
 )
 
 win_unix=( 'cygwin' 'msys' )
-old_dotfiles="${TMP}/old_dotfiles"
+old_dotfiles='/tmp/old_dotfiles'
 dotfiles_repo=$( cd  $(dirname ${0}); dirname $(pwd -P) )
 
 mkdir -p "${old_dotfiles}"
