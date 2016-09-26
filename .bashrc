@@ -14,9 +14,10 @@ if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
     # these aliases are in place to counter the interactive python bug
     # that exists in msys2, detailed here:
     # http://stackoverflow.com/questions/32597209
+    alias node='winpty node --use_strict'
     alias python='winpty python'
     alias pip='winpty pip'
-    alias node='winpty node --use_strict'
+    alias sencha='winpty sencha'
 
     # alias ArcGIS's version of python and supporting executables
     arcpy_dir='/c/Python27/ArcGIS10.4'
