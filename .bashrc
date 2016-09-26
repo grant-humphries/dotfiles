@@ -2,9 +2,10 @@
 # Aliases
 #----------------------------------------------------------------------
 
+# -h returns human readable file sizes
 alias la='ls -a'
-alias ll='ls -l'
-alias lal='ls -al'
+alias ll='ls -hl'
+alias lal='ls -ahl'
 
 # encourage good javascript habits
 alias node='node --use_strict'
