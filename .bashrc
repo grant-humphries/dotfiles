@@ -80,6 +80,8 @@ cd() {
         for (( i = 1; i < "${levels}"; i++ )); do
             cmd="${cmd}../"
         done
+    else
+        cmd="${@}"
     fi
 
     # quoting the cmd variable here causes weird behavior on cygwin
