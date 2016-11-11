@@ -70,18 +70,20 @@ fi
 # levels when further '.' characters are provided so 'cd ...' moves up
 # two levels, etc.
 cd() {
-    cmd="${@}"
+    # TODO: figure out how to make 3+ dots work with autocomplete
 
-    if [[ "${@}" =~ ^\.{3,}$ ]]; then
+    # left hand side of comparison is last argument passed to cd
+    if [[ "${@: -1}" =~ ^\.{3,} ]]; then
         cmd=''
         levels="${#1}"
 
-        for (( i=1; i < "${levels}"; i++ )); do
+        for (( i = 1; i < "${levels}"; i++ )); do
             cmd="${cmd}../"
         done
     fi
 
-    builtin cd "${cmd}"
+    # quoting the cmd variable here causes weird behavior on cygwin
+    builtin cd ${cmd}
 }
 
 # print each file path in the PATH environment variable on separate line
