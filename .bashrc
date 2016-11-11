@@ -72,20 +72,25 @@ fi
 cd() {
     # TODO: figure out how to make 3+ dots work with autocomplete
 
-    # left hand side of comparison is last argument passed to cd
-    if [[ "${@: -1}" =~ ^\.{3,} ]]; then
-        cmd=''
-        levels="${#1}"
+    args="${@:1:${#}-1}"
+    path="${@: -1}"
 
-        for (( i = 1; i < "${levels}"; i++ )); do
-            cmd="${cmd}../"
+    if [[ "${path}" =~ ^\.{3,} ]]; then
+        dots="${BASH_REMATCH}"
+        tail="${path##*...}"
+        levels="${#dots}"
+
+        # loop starts at two because the first set of dots is assigned
+        # cmd when it is initialized
+        path='..'
+        for (( i = 2; i < "${levels}"; i++ )); do
+            path="${path}/.."
         done
-    else
-        cmd="${@}"
+
+        path="${path}${tail}"
     fi
 
-    # quoting the cmd variable here causes weird behavior on cygwin
-    builtin cd ${cmd}
+    builtin cd ${args} "${path}"
 }
 
 # print each file path in the PATH environment variable on separate line
