@@ -31,6 +31,30 @@ fi
 # Colors
 #----------------------------------------------------------------------
 
+# nice guide of setting PSI colors
+# https://www.digitalocean.com/community/tutorials/how-to-customize-your-bash-prompt-on-a-linux-vps
+reset='\[\e[0m\]'
+
+black='\[\e[0;30m\]'
+red='\[\e[0;31m\]'
+green='\[\e[0;32m\]'
+yellow='\[\e[0;33m\]'
+blue='\[\e[0;34m\]'
+magenta='\[\e[0;35m\]'
+cyan='\[\e[0;36m\]'
+white='\[\e[0;37m\]'
+
+gray='\[\e[1;30m\]'
+pink='\[\e[1;31m\]'
+lt_green='\[\e[1;32m\]'
+lt_yellow='\[\e[1;33m\]'
+lt_blue='\[\e[1;34m\]'
+lt_magenta='\[\e[1;35m\]'
+lt_cyan='\[\e[1;36m\]'
+lt_gray='\[\e[1;37m\]'
+
+export PS1="${black}abc${red}abc${green}abc${yellow}abc${blue}abc${magenta}abc${cyan}abc${white}abc${gray}abc${pink}abc${lt_green}abc${lt_yellow}abc${lt_blue}abc${lt_magenta}abc${lt_cyan}abc${lt_gray}abc"
+
 # mac os x specific
 if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # enable colors in terminal and set 'ls' colors
@@ -38,8 +62,22 @@ if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     export LSCOLORS=ExFxBxDxCxegedabagacad
 
     # this determines format of the prompt and title in the shell
-    export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
-fi
+#    export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h: \[\033[33;1m\]{ \w } \[\033[m\] $( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo )  ~> "
+#    export PS1="\[\033[00;34m\]{ \[\033[01;34m\]\W \[\033[00;34m\]}\[\033[01;32m\] $( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo ) \[\033[01;31m\]» \[\033[00m\]"
+#function color_my_prompt {
+#    local end_color='\e[m'
+#
+#    local user='\u'
+#    local host='\[\e[1;32m\]\h'
+#    local path='\[\e[1;34m\]\w'
+#    local git_branch_color='\[\033[31m\]'
+#    local git_branch="$(git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /)"
+#    local prompt_tail="\[\033[35m\]~>"
+#    export PS1="${user}@${host}: ${path} (${git_branch}) ${prompt_tail} "
+#}
+#color_my_prompt
+#
+#fi
 
 #BABUN_PS1="\[\033[00;34m\]{ \[\033[01;34m\]\W \[\033[00;34m\]}\[\033[01;32m\] \$( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo "" ) \[\033[01;31m\]» \[\033[00m\]"
 
