@@ -8,13 +8,15 @@ dotfiles=(
     '.bashrc' 
     '.inputrc'
     '.gitconfig'
+    '.git-completion.bash'
+    '.git-prompt.sh'
     '.minttyrc'
     '.vimrc'
 )
 
 win_unix=( 'cygwin' 'msys' )
 old_dotfiles='/tmp/old_dotfiles'
-dotfiles_repo=$( cd  $(dirname ${0}); dirname $(pwd -P) )
+dotfiles_repo=$( cd $(dirname ${0}); dirname $(pwd -P) )
 
 mkdir -p "${old_dotfiles}"
 

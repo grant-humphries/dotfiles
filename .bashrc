@@ -31,7 +31,7 @@ fi
 # Colors
 #----------------------------------------------------------------------
 
-# nice guide of setting PSI colors
+# quality guide of setting PSI colors
 # https://www.digitalocean.com/community/tutorials/how-to-customize-your-bash-prompt-on-a-linux-vps
 reset='\[\e[0m\]'
 
@@ -44,42 +44,45 @@ magenta='\[\e[0;35m\]'
 cyan='\[\e[0;36m\]'
 white='\[\e[0;37m\]'
 
-gray='\[\e[1;30m\]'
-pink='\[\e[1;31m\]'
-lt_green='\[\e[1;32m\]'
-lt_yellow='\[\e[1;33m\]'
-lt_blue='\[\e[1;34m\]'
-lt_magenta='\[\e[1;35m\]'
-lt_cyan='\[\e[1;36m\]'
-lt_gray='\[\e[1;37m\]'
+black_bold='\[\e[1;30m\]'
+red_bold='\[\e[1;31m\]'
+green_bold='\[\e[1;32m\]'
+yellow_bold='\[\e[1;33m\]'
+blue_bold='\[\e[1;34m\]'
+magenta_bold='\[\e[1;35m\]'
+cyan_bold='\[\e[1;36m\]'
+white_bold='\[\e[1;37m\]'
 
-export PS1="${black}abc${red}abc${green}abc${yellow}abc${blue}abc${magenta}abc${cyan}abc${white}abc${gray}abc${pink}abc${lt_green}abc${lt_yellow}abc${lt_blue}abc${lt_magenta}abc${lt_cyan}abc${lt_gray}abc"
-
-# mac os x specific
+# mac os specific
 if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # enable colors in terminal and set 'ls' colors
     export CLICOLOR=1
     export LSCOLORS=ExFxBxDxCxegedabagacad
 
-    # this determines format of the prompt and title in the shell
-#    export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h: \[\033[33;1m\]{ \w } \[\033[m\] $( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo )  ~> "
-#    export PS1="\[\033[00;34m\]{ \[\033[01;34m\]\W \[\033[00;34m\]}\[\033[01;32m\] $( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo ) \[\033[01;31m\]» \[\033[00m\]"
-#function color_my_prompt {
-#    local end_color='\e[m'
-#
-#    local user='\u'
-#    local host='\[\e[1;32m\]\h'
-#    local path='\[\e[1;34m\]\w'
-#    local git_branch_color='\[\033[31m\]'
-#    local git_branch="$(git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /)"
-#    local prompt_tail="\[\033[35m\]~>"
-#    export PS1="${user}@${host}: ${path} (${git_branch}) ${prompt_tail} "
-#}
-#color_my_prompt
-#
-#fi
+    # some ansi color sequences map to different colors on mac
+    gray="${white}"
+    gray="${white_bold}"
+    white="${black}"
+    white_bold="${black_bold}"
+    unset black
+    unset black_bold
+fi
 
-#BABUN_PS1="\[\033[00;34m\]{ \[\033[01;34m\]\W \[\033[00;34m\]}\[\033[01;32m\] \$( git rev-parse --abbrev-ref HEAD 2> /dev/null || echo "" ) \[\033[01;31m\]» \[\033[00m\]"
+#----------------------------------------------------------------------
+# Prompt
+#----------------------------------------------------------------------
+
+# enable git autocompletion and access to the __git_ps1 function
+source "${HOME}/.git-completion.bash"
+source "${HOME}/.git-prompt.sh"
+
+# see .git-prompt.sh in this repo for explanation of these
+export GIT_PS1_SHOWDIRTYSTATE='true'
+export GIT_PS1_SHOWSTASHSTATE='true'
+
+export PS1="${cyan_bold}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_bold}~> ${reset}"
+
+export BABUN_PS1="${blue}{ ${blue_bold}\W ${blue}} ${green_bold}\$(__git_ps1 '(%s)') ${red_bold}» ${reset}"
 
 #----------------------------------------------------------------------
 # Environment Variables
@@ -92,9 +95,7 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # unzips eggs
     export PYTHON_EGG_CACHE='/tmp/python_eggs'
     mkdir -p "${PYTHON_EGG_CACHE}"
-fi
-
-if [[ "${OSTYPE}" =~ 'darwin' ]]; then
+elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # these variables aren't set by default in mac os x
     export TMP='/tmp'
     export TEMP='/tmp'
