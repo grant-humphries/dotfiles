@@ -44,28 +44,21 @@ magenta='\[\e[0;35m\]'
 cyan='\[\e[0;36m\]'
 white='\[\e[0;37m\]'
 
-black_bold='\[\e[1;30m\]'
-red_bold='\[\e[1;31m\]'
-green_bold='\[\e[1;32m\]'
-yellow_bold='\[\e[1;33m\]'
-blue_bold='\[\e[1;34m\]'
-magenta_bold='\[\e[1;35m\]'
-cyan_bold='\[\e[1;36m\]'
-white_bold='\[\e[1;37m\]'
+# bright colors
+black_brt='\[\e[1;30m\]'
+red_brt='\[\e[1;31m\]'
+green_brt='\[\e[1;32m\]'
+yellow_brt='\[\e[1;33m\]'
+blue_brt='\[\e[1;34m\]'
+magenta_brt='\[\e[1;35m\]'
+cyan_brt='\[\e[1;36m\]'
+white_brt='\[\e[1;37m\]'
 
 # mac os specific
 if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # enable colors in terminal and set 'ls' colors
     export CLICOLOR=1
     export LSCOLORS=ExFxBxDxCxegedabagacad
-
-    # some ansi color sequences map to different colors on mac
-    gray="${white}"
-    gray="${white_bold}"
-    white="${black}"
-    white_bold="${black_bold}"
-    unset black
-    unset black_bold
 fi
 
 #----------------------------------------------------------------------
@@ -80,9 +73,9 @@ source "${HOME}/.git-prompt.sh"
 export GIT_PS1_SHOWDIRTYSTATE='true'
 export GIT_PS1_SHOWSTASHSTATE='true'
 
-export PS1="${cyan_bold}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_bold}~> ${reset}"
+export PS1="${cyan_bold}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_brt}~> ${reset}"
 
-export BABUN_PS1="${blue}{ ${blue_bold}\W ${blue}} ${green_bold}\$(__git_ps1 '(%s)') ${red_bold}» ${reset}"
+export BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)') ${red_brt}» ${reset}"
 
 #----------------------------------------------------------------------
 # Environment Variables
