@@ -45,5 +45,5 @@ done
 
 if [ -n "${mv_flag}" ]; then
     echo 'some dotfiles already existed in your home directory, they have '
-    echo "moved to the following directory: ${old_dotfiles}"
+    echo "been moved to the following directory: ${old_dotfiles}"
 fi
