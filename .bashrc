@@ -3,9 +3,14 @@
 #----------------------------------------------------------------------
 
 # -h returns human readable file sizes
+alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -hl'
 alias lal='ls -ahl'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # encourage good javascript habits
 alias node='node --use_strict'
