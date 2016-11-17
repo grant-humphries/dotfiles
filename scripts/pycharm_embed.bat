@@ -1,7 +1,9 @@
 @echo off
 setlocal enableDelayedExpansion
 
-:: note that I don't use the default install dir for babun
+:: note that I don't use the default install dir for babun, this
+:: should be the only variable that needs to be modified for others to
+:: use this script
 set install_dir=C:
 
 :: cygwin's /etc/profile listens for the CHERE_INVOKING environment
