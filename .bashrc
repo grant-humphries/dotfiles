@@ -3,22 +3,16 @@
 #----------------------------------------------------------------------
 
 # -h returns human readable file sizes
-alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -hl'
 alias lal='ls -ahl'
 
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
 # encourage good javascript habits
 alias node='node --use_strict'
 
-# windows/cygwin specific
 if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
-    # these aliases are in place to counter the interactive python bug
-    # that exists in msys2, detailed here:
+    # windows specific - these aliases are in place to counter the
+    # interactive python bug that exists in msys2, detailed here:
     # http://stackoverflow.com/questions/32597209
     alias node='winpty node --use_strict'
     alias python='winpty python'
@@ -30,6 +24,11 @@ if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
     alias arcpython="winpty ${arcpy_dir}/python"
     alias arcbuildout="${arcpy_dir}/Scripts/buildout"
     alias arcpip="winpty ${arcpy_dir}/Scripts/pip"
+elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias fgrep='fgrep --color=auto'
 fi
 
 #----------------------------------------------------------------------
@@ -78,7 +77,7 @@ source "${HOME}/.git-prompt.sh"
 export GIT_PS1_SHOWDIRTYSTATE='true'
 export GIT_PS1_SHOWSTASHSTATE='true'
 
-export PS1="${cyan_bold}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_brt}~> ${reset}"
+export PS1="${cyan_brt}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_brt}~> ${reset}"
 
 export BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)') ${red_brt}» ${reset}"
 
@@ -86,17 +85,24 @@ export BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)
 # Environment Variables
 #----------------------------------------------------------------------
 
-# windows/cygwin specific
+#
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
-    # by default this variable is set to a directory that doesn't have
-    # adequate permissions, it is a temporary directory where setuptools
-    # unzips eggs
+    # by default this variable is set to a
+    # directory that doesn't have adequate permissions, it is a
+    # temporary directory where setuptools unzips eggs
     export PYTHON_EGG_CACHE='/tmp/python_eggs'
     mkdir -p "${PYTHON_EGG_CACHE}"
 elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # these variables aren't set by default in mac os x
     export TMP='/tmp'
     export TEMP='/tmp'
+elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
+    # environment variables that will help python packages find the
+    # c/c++ libraries that they rely upon
+    # http://gis.stackexchange.com/questions/28966/
+    export C_INCLUDE_PATH='/usr/include/gdal'
+    export CPLUS_INCLUDE_PATH='/usr/include/gdal'
+    export PROJ_DIR='/usr/share/proj'
 fi
 
 #----------------------------------------------------------------------
