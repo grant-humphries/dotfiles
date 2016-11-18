@@ -77,8 +77,8 @@ source "${HOME}/.git-prompt.sh"
 export GIT_PS1_SHOWDIRTYSTATE='true'
 export GIT_PS1_SHOWSTASHSTATE='true'
 
+lighting_bolt='⚡'
 export PS1="${cyan_brt}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_brt}~> ${reset}"
-
 export BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)') ${red_brt}» ${reset}"
 
 #----------------------------------------------------------------------
