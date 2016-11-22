@@ -102,7 +102,10 @@ elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     # http://gis.stackexchange.com/questions/28966/
     export C_INCLUDE_PATH='/usr/include/gdal'
     export CPLUS_INCLUDE_PATH='/usr/include/gdal'
-    export PROJ_DIR='/usr/share/proj'
+
+    # https://github.com/jswhit/pyproj/issues/97
+    export PROJ_DIR='/usr'
+    export PROJ_LIBDIR='/usr/lib/x86_64-linux-gnu'
 fi
 
 #----------------------------------------------------------------------
