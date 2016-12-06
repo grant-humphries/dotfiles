@@ -8,6 +8,10 @@
     trustctime = false
 [credential]
     helper = cache --timeout=86400
+[diff]
+    # this setting only works with git 2.11+
+    # http://stackoverflow.com/questions/25550582
+    wsErrorHighLight = all
 [merge]
     tool = vimdiff
 [push]
