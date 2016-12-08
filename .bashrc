@@ -145,16 +145,17 @@ path() {
 }
 
 add_to_path() {
+    # supply a second parameter to have the add the new directory to
+    # the back rather than the front of the path
     add_dir="${1}"
-    add_to_back="${2}"
+    append="${2:-front}"
 
-    echo $add_dir
-    if [[ -d "${add_dir}" && ! "${PATH}" =~ (^|:)${local_bin}(:|$) ]]; then
-        echo 'yeah'
-        if [ -n "${add_to_back}" ]; then
-              PATH="${PATH}:${add_dir}"
+    # only add if directory exists and is not already in path
+    if [[ -d "${add_dir}" && ! "${PATH}" =~ (^|:)${add_dir}(:|$) ]]; then
+        if [ "${append}" == 'front' ]; then
+            PATH="${add_dir}:${PATH}"
         else
-             PATH="${add_dir}:${PATH}"
+            PATH="${PATH}:${add_dir}"
         fi
     fi
 }
@@ -164,16 +165,10 @@ add_to_path() {
 #----------------------------------------------------------------------
 
 # local compilations
-local_bin="${HOME}/bin"
-if [[ -d "${local_bin}" && ! "${PATH}" =~ (^|:)${local_bin}(:|$) ]]; then
-    PATH="${local_bin}:${PATH}"
-fi
+add_to_path "${HOME}/bin"
 
 # Ruby version manager
-#rvm_bin=
-#if [ -d "${HOME}/.rvm/bin" && ! "${PATH}" =~ (^|:)${local_bin}(:|$) ]; then
-#    PATH="${PATH}:${HOME}/.rvm/bin"
-#fi
+add_to_path "${HOME}/.rvm/bin"
 
 #----------------------------------------------------------------------
 # Settings
