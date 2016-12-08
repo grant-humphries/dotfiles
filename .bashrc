@@ -144,19 +144,36 @@ path() {
     echo "${PATH//:/$'\n'}"
 }
 
+add_to_path() {
+    add_dir="${1}"
+    add_to_back="${2}"
+
+    echo $add_dir
+    if [[ -d "${add_dir}" && ! "${PATH}" =~ (^|:)${local_bin}(:|$) ]]; then
+        echo 'yeah'
+        if [ -n "${add_to_back}" ]; then
+              PATH="${PATH}:${add_dir}"
+        else
+             PATH="${add_dir}:${PATH}"
+        fi
+    fi
+}
+
 #----------------------------------------------------------------------
 # Path Adjustments
 #----------------------------------------------------------------------
 
 # local compilations
-if [ -d "${HOME}/bin" ]; then
-    PATH="${HOME}/bin:${PATH}"
+local_bin="${HOME}/bin"
+if [[ -d "${local_bin}" && ! "${PATH}" =~ (^|:)${local_bin}(:|$) ]]; then
+    PATH="${local_bin}:${PATH}"
 fi
 
 # Ruby version manager
-if [ -d "${HOME}/.rvm/bin" ]; then
-    PATH="${PATH}:${HOME}/.rvm/bin"
-fi
+#rvm_bin=
+#if [ -d "${HOME}/.rvm/bin" && ! "${PATH}" =~ (^|:)${local_bin}(:|$) ]; then
+#    PATH="${PATH}:${HOME}/.rvm/bin"
+#fi
 
 #----------------------------------------------------------------------
 # Settings
