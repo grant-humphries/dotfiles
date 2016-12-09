@@ -128,8 +128,8 @@ path() {
 add_to_path() {
     # supply a second parameter to have the add the new directory to
     # the back rather than the front of the path
-    add_dir="${1}"
-    append="${2:-front}"
+    local add_dir="${1}"
+    local append="${2:-front}"
 
     # only add if directory exists and is not already in path
     if [[ -d "${add_dir}" && ! "${PATH}" =~ (^|:)${add_dir}(:|$) ]]; then
@@ -139,6 +139,35 @@ add_to_path() {
             export PATH="${PATH}:${add_dir}"
         fi
     fi
+}
+
+move_in_path() {
+    # moves any items in PATH that contain the string provided in the
+    # first parameter to the front of PATH, if a second parameter is
+    # supplied it moves them to them back of PATH instead
+
+    local match_str="${1}"
+    local append="${2:-front}"
+    local default_IFS="${IFS}"
+    local match_path=''
+    local other_path=''
+
+    # temporarily change IFS to a colon so the items in PATH can be
+    # iterated over
+    IFS=':'
+
+    # note that if PATH is quoted here iteration won't work
+    for p in ${PATH}; do
+        if [[ "${p}" =~ "${match_str}" ]]; then
+            match_path+="${p}:"
+
+        else
+            other_path+="${p}:"
+        fi
+    done
+
+    IFS="${default_IFS}"
+    export PATH="${match_path}${other_path%:}"
 }
 
 #----------------------------------------------------------------------

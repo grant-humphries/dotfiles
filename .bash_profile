@@ -4,21 +4,20 @@
 #----------------------------------------------------------------------
 # Path Adjustments
 #----------------------------------------------------------------------
-
-# move cygwin executables to back of path (they're at the front by
-# default) ORIGINAL_PATH var comes from /etc/profile
-if [[ "${OSTYPE}" == 'cygwin' ]]; then
-    export PATH="${ORIGINAL_PATH}:/usr/local/bin:/usr/bin"
-fi
-
-# add_to_path function comes from .bashrc, it checks that the path
-# exists and is not already in the path before adding
+# add_to_path and move_in_path functions are .bashrc
 
 # local compilations
 add_to_path "${HOME}/bin"
 
 # Ruby version manager
 add_to_path "${HOME}/.rvm/bin"
+
+# on windows miniconda python needs to be in front of cygwin python
+[[ "${OSTYPE}" == 'cygwin' ]] && move_in_path 'Miniconda2'
+
+# NOTE: in babun changes are also made to the path by the file
+# /usr/local/etc/babun/source/babun-core/plugins/core/src/babun.rc
+# these can be overridden in .babunrc
 
 #----------------------------------------------------------------------
 # Environment Variables
