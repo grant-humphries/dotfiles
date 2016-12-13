@@ -1,10 +1,9 @@
-# load bash aliases, functions, settings, etc.
+# load .bashrc, all functions used here come form there
 [[ -r "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"
 
 #----------------------------------------------------------------------
 # Path Adjustments
 #----------------------------------------------------------------------
-# add_to_path and move_in_path functions are .bashrc
 
 # local compilations
 add_to_path "${HOME}/bin"
@@ -50,12 +49,9 @@ fi
 # SSH Config
 #----------------------------------------------------------------------
 
-# start ssh agent so passphrase doesn't have to be repeatedly entered,
-# the condition here keeps additional instances of the ssh-agent from
-# being created when child login shell are launched
-if [ -z "${SSH_AUTH_SOCK}" ]; then
-    eval $( ssh-agent -s )
-    ssh-add
+# launch ssh agent if not ssh'ed into a remote host
+if [ -z "${SSH_TTY}" ]; then
+    launch_ssh_agent
 fi
 
 #----------------------------------------------------------------------

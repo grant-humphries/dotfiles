@@ -88,13 +88,29 @@ source "${HOME}/.git-prompt.sh"
 GIT_PS1_SHOWDIRTYSTATE='true'
 GIT_PS1_SHOWSTASHSTATE='true'
 
-lighting_bolt='⚡'
+lightning_bolt='⚡'
 PS1="${cyan_brt}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_brt}~> ${reset}"
 BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)') ${red_brt}» ${reset}"
 
 #----------------------------------------------------------------------
 # Functions
 #----------------------------------------------------------------------
+
+add_to_path() {
+    # supply a second parameter to have the add the new directory to
+    # the back rather than the front of the path
+    local add_dir="${1}"
+    local append="${2:-front}"
+
+    # only add if directory exists and is not already in path
+    if [[ -d "${add_dir}" && ! "${PATH}" =~ (^|:)${add_dir}(:|$) ]]; then
+        if [ "${append}" == 'front' ]; then
+            export PATH="${add_dir}:${PATH}"
+        else
+            export PATH="${PATH}:${add_dir}"
+        fi
+    fi
+}
 
 # usage: extends functionality of cd to go up additional directory
 # levels when further '.' characters are provided so 'cd ...' moves up
@@ -123,24 +139,13 @@ cd() {
     builtin cd ${args} "${path}"
 }
 
-# print each file path in the PATH environment variable on separate line
-path() {
-    echo "${PATH//:/$'\n'}"
-}
-
-add_to_path() {
-    # supply a second parameter to have the add the new directory to
-    # the back rather than the front of the path
-    local add_dir="${1}"
-    local append="${2:-front}"
-
-    # only add if directory exists and is not already in path
-    if [[ -d "${add_dir}" && ! "${PATH}" =~ (^|:)${add_dir}(:|$) ]]; then
-        if [ "${append}" == 'front' ]; then
-            export PATH="${add_dir}:${PATH}"
-        else
-            export PATH="${PATH}:${add_dir}"
-        fi
+# start ssh agent so passphrase doesn't have to be repeatedly entered,
+# the condition here keeps additional instances of the ssh-agent from
+# being created when child login shell are launched
+launch_ssh_agent() {
+    if [ -z "${SSH_AUTH_SOCK}" ]; then
+        eval $( ssh-agent -s ) &> '/dev/null'
+        ssh-add
     fi
 }
 
@@ -163,14 +168,24 @@ move_in_path() {
     for p in ${PATH}; do
         if [[ "${p}" =~ "${match_str}" ]]; then
             match_path+="${p}:"
-
         else
             other_path+="${p}:"
         fi
     done
 
+    if [ "${append}" == 'front' ]; then
+        PATH="${match_path}${other_path%:}"
+    else
+        PATH="${other_path}${match_path%:}"
+    fi
+
     IFS="${default_IFS}"
-    export PATH="${match_path}${other_path%:}"
+    export PATH
+}
+
+# print each file path in the PATH environment variable on separate line
+path() {
+    echo "${PATH//:/$'\n'}"
 }
 
 #----------------------------------------------------------------------
