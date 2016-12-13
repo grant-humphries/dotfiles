@@ -24,11 +24,11 @@ add_to_path "${HOME}/.rvm/bin"
 # any environment variables declared here should not be bash specific,
 # put bash specific variables in .bashrc
 
-if [ -z "${TMP}" && -d '/tmp' ]; then
+if [[ -z "${TMP}" && -d '/tmp' ]]; then
     export TMP='/tmp'
 fi
 
-if [ -z "${TEMP}" && -d '/tmp' ]; then
+if [[ -z "${TEMP}" && -d '/tmp' ]]; then
     export TEMP='/tmp'
 fi
 
