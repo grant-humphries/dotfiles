@@ -44,7 +44,6 @@ elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
 
     # https://github.com/jswhit/pyproj/issues/97
     export PROJ_DIR='/usr'
-    export PROJ_LIBDIR='/usr/lib/x86_64-linux-gnu'
 fi
 
 #----------------------------------------------------------------------
@@ -55,7 +54,7 @@ fi
 # the condition here keeps additional instances of the ssh-agent from
 # being created when child login shell are launched
 if [ -z "${SSH_AUTH_SOCK}" ]; then
-    eval $(ssh-agent )
+    eval $( ssh-agent -s )
     ssh-add
 fi
 
