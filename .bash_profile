@@ -48,6 +48,18 @@ elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
 fi
 
 #----------------------------------------------------------------------
+# SSH Config
+#----------------------------------------------------------------------
+
+# start ssh agent so passphrase doesn't have to be repeatedly entered,
+# the condition here keeps additional instances of the ssh-agent from
+# being created when child login shell are launched
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+    eval $(ssh-agent )
+    ssh-add
+fi
+
+#----------------------------------------------------------------------
 # RVM (Ruby Version Manager)
 #----------------------------------------------------------------------
 

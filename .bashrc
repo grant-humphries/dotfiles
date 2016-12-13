@@ -10,12 +10,15 @@ alias lal='ls -ahl'
 # encourage good javascript habits
 alias node='node --use_strict'
 
-# cygwin python is alias to give access to it since miniconda is my
-# main python on windows
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
+    # cygwin python is alias to give access to it since miniconda is my
+    # main python on windows
     alias cygpython='/usr/bin/python2.7'
     alias cygpip='/usr/bin/pip'
     alias cygeasy_install='/usr/bin/easy_install-2.7'
+
+    # launch new, child cygwin terminal
+    alias cygterm='cygstart mintty bash -il'
 fi
 
 if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then

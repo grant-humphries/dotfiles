@@ -4,8 +4,9 @@
 set -e
 
 dotfiles=(
-    '.bash_profile' 
-    '.bashrc' 
+    '.bashrc'
+    '.bash_logout'
+    '.bash_profile'
     '.inputrc'
     '.gitconfig'
     '.git-completion.bash'
