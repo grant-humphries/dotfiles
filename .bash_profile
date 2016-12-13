@@ -24,16 +24,20 @@ add_to_path "${HOME}/.rvm/bin"
 # any environment variables declared here should not be bash specific,
 # put bash specific variables in .bashrc
 
+if [ -z "${TMP}" && -d '/tmp' ]; then
+    export TMP='/tmp'
+fi
+
+if [ -z "${TEMP}" && -d '/tmp' ]; then
+    export TEMP='/tmp'
+fi
+
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # by default this variable is set to a
     # directory that doesn't have adequate permissions, it is a
     # temporary directory where setuptools unzips eggs
     export PYTHON_EGG_CACHE='/tmp/python_eggs'
     mkdir -p "${PYTHON_EGG_CACHE}"
-elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
-    # these variables aren't set by default in mac os x
-    export TMP='/tmp'
-    export TEMP='/tmp'
 elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     # environment variables that will help python packages find the
     # c/c++ libraries that they rely upon
