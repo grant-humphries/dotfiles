@@ -143,10 +143,19 @@ cd() {
 # the condition here keeps additional instances of the ssh-agent from
 # being created when child login shell are launched
 launch_ssh_agent() {
-    if [ -z "${SSH_AUTH_SOCK}" ]; then
-        eval $( ssh-agent -s ) &> '/dev/null'
-        ssh-add
+    local sock_link="${HOME}/.ssh/ssh_auth_sock"
+
+    if [ ! -S "${sock_link}" ]; then
+        eval $( ssh-agent -s )
+        ln -fs "${SSH_AUTH_SOCK}" "${sock_link}"
+    else
+        export SSH_AGENT_PID=$( pidof ssh-agent )
     fi
+
+    export SSH_AUTH_SOCK="${sock_link}"
+
+    # if no identities are represented prompt the user to add one
+    ssh-add -l &> '/dev/null' || ssh-add
 }
 
 move_in_path() {

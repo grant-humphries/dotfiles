@@ -10,6 +10,18 @@ set shiftwidth=4
 " on pressing tab insert 4 spaces
 set expandtab
 
+
+" show white space characters
+" to show CR characters launch vim with the -b flag
+set listchars=eol:¬,space:·,tab:»-
+set list
+
+" set white space colors to dark gray, color reference: 
+" http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+hi SpecialKey ctermfg=236
+hi NonText ctermfg=236
+
+
 " versioning
 if has("vms")
     " if vim has versioning don't use backup files 
