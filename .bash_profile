@@ -1,3 +1,6 @@
+# if bash profile has already been run don't run it again
+[[ -z "${BASH_PROFILE_RUN}" ]] && BASH_PROFILE_RUN=1 || return
+
 # load .bashrc, all functions used here come form there
 [[ -r "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"
 
