@@ -144,17 +144,18 @@ cd() {
 # being created when child login shell are launched
 launch_ssh_agent() {
     local sock_link="${HOME}/.ssh/ssh_auth_sock"
+    local agent_pid=$( pidof ssh-agent )
 
-    if [ ! -S "${sock_link}" ]; then
+    if [ -z "${agent_pid}" ]; then
         eval $( ssh-agent -s )
         ln -fs "${SSH_AUTH_SOCK}" "${sock_link}"
     else
-        export SSH_AGENT_PID=$( pidof ssh-agent )
+        export SSH_AGENT_PID="${agent_pid}"
     fi
 
     export SSH_AUTH_SOCK="${sock_link}"
 
-    # if no identities are represented prompt the user to add one
+    # if no identities are represented prompt the useesr to add one
     ssh-add -l &> '/dev/null' || ssh-add
 }
 
