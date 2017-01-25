@@ -216,3 +216,15 @@ shopt -s histappend
 
 # make globbing case insensitive
 shopt -s nocaseglob
+
+
+# PyCharm Terminal
+
+# PYCHARM_DIR is by batch file run by pycharm
+if [[ -n PYCHARM_DIR && "${OSTYPE}" == 'cygwin' ]]; then
+    # vim doesn't work properly in pycharm without this setting
+    export TERM='cygwin'
+
+    # go to home of pycharm project
+    cd $( cygpath "${PYCHARM_DIR}" )
+fi

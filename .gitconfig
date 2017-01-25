@@ -21,6 +21,7 @@
 [alias]
     ca = commit -a
     cam = commit -am
+    cm = commit -m
     pt = push --follow-tags
 [include]
     path = ~/.gitconfig.local
