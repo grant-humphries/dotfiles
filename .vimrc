@@ -1,7 +1,7 @@
 " syntax highlighting
 syntax on
 
-
+" this will automatically wrap lines at given width based on the file type
 filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=4

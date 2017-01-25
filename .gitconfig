@@ -19,7 +19,8 @@
 [tag]
     sort = version:refname
 [alias]
-    ca = commit -am
-    ps = push --follow-tags
+    ca = commit -a
+    cam = commit -am
+    pt = push --follow-tags
 [include]
     path = ~/.gitconfig.local
