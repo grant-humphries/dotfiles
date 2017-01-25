@@ -221,7 +221,7 @@ shopt -s nocaseglob
 # PyCharm Terminal
 
 # PYCHARM_DIR is by batch file run by pycharm
-if [[ -n PYCHARM_DIR && "${OSTYPE}" == 'cygwin' ]]; then
+if [[ -n "${PYCHARM_DIR}" && "${OSTYPE}" == 'cygwin' ]]; then
     # vim doesn't work properly in pycharm without this setting
     export TERM='cygwin'
 
