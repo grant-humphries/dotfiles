@@ -1,6 +1,9 @@
 " syntax highlighting
 syntax on
 
+" make backspace behave in standard fashion
+set backspace=indent,eol,start
+
 " this will automatically wrap lines at given width based on the file type
 filetype plugin indent on
 " show existing tab with 4 spaces width
