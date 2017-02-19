@@ -11,6 +11,7 @@ dotfiles=(
     '.gitconfig'
     '.git-completion.bash'
     '.git-prompt.sh'
+    '.git-templates'
     '.minttyrc'
     '.vimrc'
 )

@@ -1,3 +1,9 @@
+[alias]
+    ca = commit -a
+    cam = commit -am
+    cm = commit -m
+    co = checkout
+    pt = push --follow-tags
 [color]
     ui = true
 [core]
@@ -12,6 +18,8 @@
     # this setting only works with git 2.11+
     # http://stackoverflow.com/questions/25550582
     wsErrorHighLight = all
+[init]
+    templatedir = ~/.git-templates
 [merge]
     tool = vimdiff
 [mergetool]
@@ -20,10 +28,8 @@
     default = upstream
 [tag]
     sort = version:refname
-[alias]
-    ca = commit -a
-    cam = commit -am
-    cm = commit -m
-    pt = push --follow-tags
+[user]
+    useConfigOnly = true
+
 [include]
     path = ~/.gitconfig.local
