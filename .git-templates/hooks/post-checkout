@@ -4,7 +4,7 @@
 shopt -s nocasematch
 
 # values in the services array should have a corresponding section in
-# .gitconfig where the 'user' and 'email' for that service are specified
+# .gitconfig where the 'name' and 'email' for that service are specified
 remote_url="$( git config --get --local remote.origin.url )"
 services=(
     'github'
@@ -13,14 +13,14 @@ services=(
 
 set_user_configs() {
     local service="${1}"
-    local user="$( git config --get ${service}.user )"
+    local name="$( git config --get ${service}.name )"
     local email="$( git config --get ${service}.email )"
 
-    git config --local user.name "${user}"
+    git config --local user.name "${name}"
     git config --local user.email "${email}"
 
     echo "repo initialized with the following user configs:"
-    echo "user.name = ${user}"
+    echo "user.name = ${name}"
     echo "user.email = ${email}"
 }
 
