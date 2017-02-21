@@ -17,7 +17,7 @@ set_local_user_config() {
     local service_config="$( git config --get ${service}.${config} )"
     local local_config="$( git config --get --local user.${config} )"
 
-    if [[ "${local_config}" !=  "${service_config}" ]]; then
+    if [[ "${local_config}" != "${service_config}" ]]; then
         git config --local "user.${config}" "${service_config}"
         echo "repo 'user.${config}' has been set to '${service_config}'"
     fi

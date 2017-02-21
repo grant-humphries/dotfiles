@@ -7,8 +7,8 @@
 [color]
     ui = true
 [core]
-    # if line endings are CRLF converted them to LF on commit,
-    # otherwise leave them alone
+    # if line endings are CRLF convert them to LF on commit, otherwise
+    # leave them alone
     autocrlf = input
     editor = vim
     trustctime = false
