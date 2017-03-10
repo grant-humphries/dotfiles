@@ -47,6 +47,12 @@ elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
 
     # https://github.com/jswhit/pyproj/issues/97
     export PROJ_DIR='/usr'
+elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
+    # these are required for connect with cx_Oracle
+    export TNS_ADMIN="/usr/local/lib/oracle"
+    export ORACLE_HOME="${TNS_ADMIN}/client"
+    export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
+    export DYLD_LIBRARY_PATH="${ORACLE_HOME}:${DYLD_LIBRARY_PATH}"
 fi
 
 #----------------------------------------------------------------------
