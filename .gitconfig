@@ -26,6 +26,7 @@
     keepBackup = false
 [push]
     default = upstream
+    followTags = true
 [tag]
     sort = version:refname
 [user]
