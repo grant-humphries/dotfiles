@@ -1,3 +1,7 @@
+" set encoding of this file
+scriptencoding utf-8
+set encoding=utf-8
+
 " syntax highlighting
 syntax on
 
