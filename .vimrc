@@ -18,9 +18,14 @@ set shiftwidth=4
 set expandtab
 
 
-" show white space characters
+" show white space characters (conditional is for old version of vim)
 " to show CR characters launch vim with the -b flag
-set listchars=eol:¬,space:·,tab:»-
+if has("patch-7.4.710")
+    set listchars=eol:¬,space:·,tab:»-
+else
+    set listchars=eol:¬,tab:»-
+endif
+
 set list
 
 " set white space colors to dark gray, color reference: 
