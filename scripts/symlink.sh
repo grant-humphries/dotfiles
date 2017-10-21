@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-# exit script on any error
 set -e
 
 dotfiles=(
@@ -13,6 +11,7 @@ dotfiles=(
     '.git-prompt.sh'
     '.git-templates'
     '.minttyrc'
+    '.vim'
     '.vimrc'
 )
 
