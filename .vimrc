@@ -9,7 +9,6 @@ filetype plugin indent on
 " color scheme
 set background=dark
 let g:solarized_termcolors=256
-let g:solarized_termtrans=1
 let g:solarized_visibility="low"
 colorscheme solarized
 
