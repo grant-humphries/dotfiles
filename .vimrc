@@ -1,20 +1,15 @@
 " pathogen: https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
-
-" syntax highlighting
 syntax on
 
-" wrap lines at particular widths based on the file type
+" enable file type detection and wrap lines at particular widths based
+" on the file type
 filetype plugin indent on
 
-" show existing tab with 4 spaces width
-set tabstop=4
-
-" when indenting with '>' use 4 spaces width
-set shiftwidth=4
-
-" on pressing tab insert 4 spaces
+" set tabs to four spaces
 set expandtab
+set shiftwidth=4
+set tabstop=4
 
 " make backspace behave in standard fashion
 set backspace=indent,eol,start
