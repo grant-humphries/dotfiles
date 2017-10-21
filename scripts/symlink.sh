@@ -31,7 +31,7 @@ for df in "${dotfiles[@]}"; do
     link="${HOME}/${df}"
 
     # check if file or symlink already exists in link location
-    if [ -L "${link}" ]; then
+    if [ -e "${link}" ]; then
         mv "${link}" "${old_dotfiles}/"
         mv_flag=1
     fi
