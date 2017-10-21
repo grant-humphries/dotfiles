@@ -1,17 +1,24 @@
 " pathogen: https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
-syntax on
+syntax enable
 
 " enable file type detection and wrap lines at particular widths based
 " on the file type
 filetype plugin indent on
+
+" color scheme
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_visibility="low"
+colorscheme solarized
 
 " set tabs to four spaces
 set expandtab
 set shiftwidth=4
 set tabstop=4
 
-" make backspace behave in standard fashion
+" make backspace behave in standard fashion in insert mode
 set backspace=indent,eol,start
 
 
@@ -24,11 +31,6 @@ else
 endif
 
 set list
-
-" set white space colors to dark gray, color reference:
-" http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
-hi SpecialKey ctermfg=236
-hi NonText ctermfg=236
 
 
 " versioning
