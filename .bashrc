@@ -72,8 +72,8 @@ white_brt='\[\e[1;37m\]'
 # mac os specific
 if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # enable colors in terminal and set 'ls' colors
-    CLICOLOR=1
-    LSCOLORS=ExFxBxDxCxegedabagacad
+    export CLICOLOR=1
+    export LSCOLORS=ExFxBxDxCxegedabagacad
 fi
 
 #----------------------------------------------------------------------
