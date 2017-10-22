@@ -73,7 +73,7 @@ white_brt='\[\e[1;37m\]'
 if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # enable colors in terminal and set 'ls' colors
     export CLICOLOR=1
-    export LSCOLORS=ExFxBxDxCxegedabagacad
+    export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 fi
 
 #----------------------------------------------------------------------
