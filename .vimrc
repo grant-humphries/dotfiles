@@ -31,6 +31,9 @@ endif
 
 set list
 
+" strip trailing whitespace on save (uses vim-better-whitespace plugin)
+autocmd BufEnter * EnableStripWhitespaceOnSave
+
 
 " versioning
 if has("vms")
