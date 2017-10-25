@@ -8,8 +8,12 @@ filetype plugin indent on
 
 " color scheme
 set background=dark
-let g:solarized_termcolors=256
 let g:solarized_visibility="low"
+
+if $TERM == 'xterm-256color'
+    let g:solarized_termcolors=256
+endif
+
 colorscheme solarized
 
 " set tabs to four spaces
