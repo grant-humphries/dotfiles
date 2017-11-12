@@ -16,10 +16,10 @@ dotfiles=(
 )
 
 win_unix=( 'cygwin' 'msys' )
-old_dotfiles='/tmp/old_dotfiles'
+default_dotfiles='/tmp/default_dotfiles'
 dotfiles_repo=$( cd $(dirname ${0}); dirname $(pwd -P) )
 
-mkdir -p "${old_dotfiles}"
+mkdir -p "${default_dotfiles}"
 
 for df in "${dotfiles[@]}"; do
     # .minttyrc is only used on windows
@@ -32,7 +32,7 @@ for df in "${dotfiles[@]}"; do
 
     # check if file or symlink already exists in link location
     if [ -e "${link}" ]; then
-        mv "${link}" "${old_dotfiles}/"
+        mv "${link}" "${default_dotfiles}/"
         mv_flag=1
     fi
 
@@ -46,5 +46,5 @@ done
 
 if [ -n "${mv_flag}" ]; then
     echo 'some dotfiles already existed in your home directory, they have '
-    echo "been moved to the following directory: ${old_dotfiles}"
+    echo "been moved to the following directory: ${default_dotfiles}"
 fi
