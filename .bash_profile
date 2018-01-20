@@ -38,6 +38,11 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # temporary directory where setuptools unzips eggs
     export PYTHON_EGG_CACHE='/tmp/python_eggs'
     mkdir -p "${PYTHON_EGG_CACHE}"
+
+    # cygwin sets the `TZ` environment variable by default, but Windows
+    # Python doesn't know how to read the value in the format cygwin
+    # provides which causes the timezone to be UTC instead of local
+    unset TZ
 elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     # environment variables that will help python packages find the
     # c/c++ libraries that they rely upon
