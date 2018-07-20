@@ -11,8 +11,8 @@ alias lal='ls -ahl'
 alias node='node --use_strict'
 
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
-    # cygwin python is alias to give access to it since miniconda is my
-    # main python on windows
+    # create aliases that allows access to cygwin python tools as
+    # miniconda is used as primary python
     alias cygpython='/usr/bin/python2.7'
     alias cygpip='/usr/bin/pip'
     alias cygeasy_install='/usr/bin/easy_install-2.7'
@@ -26,8 +26,8 @@ if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
     # interactive python bug that exists in msys2, detailed here:
     # http://stackoverflow.com/questions/32597209
     alias node='winpty node --use_strict'
-    alias python='winpty python'
-    alias pip='winpty pip'
+    alias python='winpty /c/Miniconda2/python'
+    alias pip='winpty /c/Miniconda2/Scripts/pip'
     alias sencha='winpty sencha'
 
     # alias ArcGIS's version of python and supporting executables

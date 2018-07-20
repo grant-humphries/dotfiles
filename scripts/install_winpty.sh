@@ -7,15 +7,18 @@ set -e
 
 winpty_github='https://github.com/rprichard/winpty.git'
 winpty_dir=$(basename "${winpty_github}" '.git' )
-install_dir="${HOME}/.local"
+install_prefix='/usr/local'
 
 dependencies() {
     # install dependencies with babun's pact, note that gcc-g++ and
     # gcc-core must be at the same version, this should take care of
     # that
-    pact install mingw64-i686-gcc-g++
-    pact install gcc-g++
-    pact update gcc-core
+
+    apt-cyg update
+    apt-cyg install make
+    apt-cyg install mingw64-x86_64-gcc-g++
+    apt-cyg install gcc-g++
+    apt-cyg install gcc-core
 }
 
 clone() {
@@ -30,7 +33,7 @@ compile() {
     cd "${TMP}/${winpty_dir}"
     ./configure
     make
-    make install PREFIX="${install_dir}"
+    make install PREFIX="${install_prefix}"
 }
 
 dependencies

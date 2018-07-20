@@ -11,9 +11,6 @@ add_to_path "${HOME}/bin"
 # Ruby version manager
 add_to_path "${HOME}/.rvm/bin"
 
-# on windows miniconda python needs to be in front of cygwin python
-[[ "${OSTYPE}" == 'cygwin' ]] && move_in_path 'Miniconda2'
-
 # NOTE: in babun changes are also made to the path by the file
 # /usr/local/etc/babun/source/babun-core/plugins/core/src/babun.rc
 # these can be overridden in .babunrc
