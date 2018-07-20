@@ -9,4 +9,3 @@ for %%i in ("%~dp0..") do set "dotfiles_path=%%~fi"
 cd "%ConEmuDir%"
 mklink ".\.ConEmu.xml" "%dotfiles_path%\.ConEmu.xml"
 move ".\ConEmu.xml" ".\ConEmu.xml.old"
-q

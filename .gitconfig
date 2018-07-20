@@ -11,6 +11,7 @@
     # leave them alone
     autocrlf = input
     editor = vim
+    filemode = false
     trustctime = false
 [credential]
     helper = cache --timeout=86400
