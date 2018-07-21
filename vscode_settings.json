@@ -6,7 +6,6 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    // "git.path": "\\cygwin64\\bin\\git.exe",
     "terminal.integrated.fontSize": 12,
 
     // set cygwin as default window shell and make it it an interactive
