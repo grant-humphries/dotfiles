@@ -1,0 +1,21 @@
+{
+    "editor.fontSize": 12,
+    "editor.renderWhitespace": "all",
+    "files.autoSave": "onFocusChange",
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    // "git.path": "\\cygwin64\\bin\\git.exe",
+    "terminal.integrated.fontSize": 12,
+
+    // set cygwin as default window shell and make it it an interactive
+    // login shell
+    "terminal.integrated.shell.windows": "C:\\cygwin64\\bin\\bash.exe",
+    "terminal.integrated.shellArgs.windows": ["-il"],
+
+    // don't cd to $HOME when starting a bash session
+    "terminal.integrated.env.windows": {
+        "CHERE_INVOKING": "1"
+    }
+}
