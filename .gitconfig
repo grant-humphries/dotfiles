@@ -3,6 +3,7 @@
     cam = commit -am
     cm = commit -m
     co = checkout
+    logmed = log --format=medium --date=local
     pt = push --follow-tags
 [color]
     ui = true
@@ -19,8 +20,14 @@
     # this setting only works with git 2.11+
     # http://stackoverflow.com/questions/25550582
     wsErrorHighLight = all
+[format]
+    # https://git-scm.com/docs/pretty-formats
+    # https://stackoverflow.com/a/9463536/2167004
+    pretty = %C(auto,yellow)%h %C(auto,blue)%>(8,trunc)%ad %C(auto,green)%<(7,trunc)%aN %C(auto,reset)%s %C(auto,red)%<(7,trunc)%D
 [init]
     templatedir = ~/.git-templates
+[log]
+    date = relative
 [merge]
     tool = vimdiff
 [mergetool]
