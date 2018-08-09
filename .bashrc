@@ -217,6 +217,8 @@ shopt -s histappend
 # make globbing case insensitive
 shopt -s nocaseglob
 
+# check the window size after each command  and adustments for wrapping
+shopt -s checkwinsize
 
 # PyCharm Terminal
 
