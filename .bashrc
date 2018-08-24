@@ -13,8 +13,8 @@ alias node='node --use_strict'
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # create aliases that allows access to cygwin python tools as
     # miniconda is used as primary python
-    alias cygpython='/usr/bin/python2.7'
-    alias cygpip='/usr/bin/pip'
+    alias cygpython='/usr/bin/python2'
+    alias cygpip='/usr/bin/pip2'
     alias cygeasy_install='/usr/bin/easy_install-2.7'
 
     # launch new, child cygwin terminal
