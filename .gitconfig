@@ -36,7 +36,7 @@
     default = upstream
     followTags = true
 [tag]
-    sort = version:refname
+    sort = -version:refname
 [user]
     useConfigOnly = true
 
