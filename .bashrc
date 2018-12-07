@@ -198,6 +198,15 @@ path() {
     echo "${PATH//:/$'\n'}"
 }
 
+recursive_dos2unix() {
+    # derived from https://stackoverflow.com/a/7068241/2167004
+
+    # use `recursive_dos2unix ./ -maxdepth 1` to convert only the files
+    # in the in the cwd and not files in subfolders
+
+    find "${@:-./}" -type f -exec dos2unix {} \;
+}
+
 #----------------------------------------------------------------------
 # Settings
 #----------------------------------------------------------------------
