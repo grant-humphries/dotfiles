@@ -13,12 +13,12 @@ alias node='node --use_strict'
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # create aliases that allows access to cygwin python tools as
     # miniconda is used as primary python
-    alias cygpython='/usr/bin/python2'
-    alias cygpip='/usr/bin/pip2'
-    alias cygeasy_install='/usr/bin/easy_install-2.7'
+    alias cyg-python='/usr/bin/python2'
+    alias cyg-pip='/usr/bin/pip2'
+    alias cyg-easy_install='/usr/bin/easy_install-2.7'
 
     # launch new, child cygwin terminal
-    alias cygterm='cygstart mintty bash -il'
+    alias cyg-term='cygstart mintty bash -il'
 fi
 
 if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
@@ -26,15 +26,9 @@ if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
     # interactive python bug that exists in msys2, detailed here:
     # http://stackoverflow.com/questions/32597209
     alias node='winpty node --use_strict'
-    alias python='winpty /c/Miniconda2/python'
-    alias pip='winpty /c/Miniconda2/Scripts/pip'
+    alias python='winpty python'
+    alias pip='winpty pip'
     alias sencha='winpty sencha'
-
-    # alias ArcGIS's version of python and supporting executables
-    arcpy_dir='/c/Python27/ArcGIS10.4'
-    alias arcpython="winpty ${arcpy_dir}/python"
-    alias arcbuildout="${arcpy_dir}/Scripts/buildout"
-    alias arcpip="winpty ${arcpy_dir}/Scripts/pip"
 elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'

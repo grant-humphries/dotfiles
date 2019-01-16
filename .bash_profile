@@ -30,6 +30,11 @@ if [[ -z "${TEMP}" && -d '/tmp' ]]; then
 fi
 
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
+    # ignore carriage returns in line endings; this allows for scripts
+    # with Windows style line endings to be run with cygwin
+    set -o igncr
+    export SHELLOPTS
+
     # by default this variable is set to a
     # directory that doesn't have adequate permissions, it is a
     # temporary directory where setuptools unzips eggs
