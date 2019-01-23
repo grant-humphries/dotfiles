@@ -1,0 +1,22 @@
+"*":
+  autosave:
+    enabled: true
+  core:
+    telemetryConsent: "limited"
+    uriHandlerRegistration: "always"
+  editor:
+    invisibles: {}
+    showInvisibles: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "335ca336-ee06-a9aa-ddff-6fccae4a8e3d"
+  "line-ending-selector":
+    defaultLineEnding: "LF"
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
+  welcome:
+    showOnStartup: false
+".oracle.plsql.source":
+  editor:
+    tabLength: 2

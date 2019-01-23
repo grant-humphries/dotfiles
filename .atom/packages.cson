@@ -1,0 +1,13 @@
+packages: [
+  "language-batch"
+  "language-bbcode"
+  "language-diff"
+  "language-ini"
+  "language-mako"
+  "language-nginx"
+  "language-oracle"
+  "language-pgsql"
+  "multi-cursor"
+  "open-recent"
+  "package-sync"
+]
