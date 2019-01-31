@@ -1,10 +1,9 @@
 [alias]
     ca = commit -a
-    cam = commit -am
-    cm = commit -m
     co = checkout
-    logmed = log --format=medium --date=local
-    pt = push --follow-tags
+    pusht = push --follow-tags
+    sdiff = diff --staged
+    vlog = log --format=medium --date=local
 [color]
     ui = true
 [core]
