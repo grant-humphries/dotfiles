@@ -1,4 +1,5 @@
 [alias]
+    aliases = !git config -l | grep -e "^alias\\." | cut -c 7-
     ca = commit -a
     co = checkout
     pusht = push --follow-tags
