@@ -16,5 +16,6 @@
     // don't cd to $HOME when starting a bash session
     "terminal.integrated.env.windows": {
         "CHERE_INVOKING": "1"
-    }
+    },
+    "gitlens.hovers.enabled": false
 }

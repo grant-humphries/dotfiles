@@ -1,19 +1,5 @@
-# load .bashrc, all functions used here come form there
+# load .bashrc; functions invoked below are defined there
 [[ -r "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"
-
-#----------------------------------------------------------------------
-# Path Adjustments
-#----------------------------------------------------------------------
-
-# local compilations
-add_to_path "${HOME}/bin"
-
-# Ruby version manager
-add_to_path "${HOME}/.rvm/bin"
-
-# NOTE: in babun changes are also made to the path by the file
-# /usr/local/etc/babun/source/babun-core/plugins/core/src/babun.rc
-# these can be overridden in .babunrc
 
 #----------------------------------------------------------------------
 # Environment Variables
@@ -30,9 +16,7 @@ if [[ -z "${TEMP}" && -d '/tmp' ]]; then
 fi
 
 if [[ "${OSTYPE}" == 'cygwin' ]]; then
-    # ignore carriage returns in line endings; this allows for scripts
-    # with Windows style line endings to be run with cygwin
-    set -o igncr
+    # export setting made to this environment variable in .bashrc
     export SHELLOPTS
 
     # by default this variable is set to a
@@ -61,6 +45,13 @@ elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
     export DYLD_LIBRARY_PATH="${ORACLE_HOME}:${DYLD_LIBRARY_PATH}"
 fi
+
+#----------------------------------------------------------------------
+# Path Adjustments
+#----------------------------------------------------------------------
+
+# Ruby version manager
+add_to_path "${HOME}/.rvm/bin"
 
 #----------------------------------------------------------------------
 # SSH Config

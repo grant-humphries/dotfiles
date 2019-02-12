@@ -223,13 +223,18 @@ shopt -s nocaseglob
 # check the window size after each command  and adustments for wrapping
 shopt -s checkwinsize
 
-# PyCharm Terminal
+if [[ "${OSTYPE}" == 'cygwin' ]]; then
+    # ignore carriage returns in line endings
+    set -o igncr
+fi
 
-# PYCHARM_DIR is by batch file run by pycharm
-if [[ -n "${PYCHARM_DIR}" && "${OSTYPE}" == 'cygwin' ]]; then
-    # vim doesn't work properly in pycharm without this setting
-    export TERM='cygwin'
+#----------------------------------------------------------------------
+# Activation
+#----------------------------------------------------------------------
 
-    # go to home of pycharm project
-    cd $( cygpath "${PYCHARM_DIR}" )
+# conda-python: in order for the `conda` executable to present in PATH
+# `<conda-install-dir>/etc/profile.d/conda.sh` should be symlinked into
+# `/etc/profile.d`
+if [[ -x "$(command -v conda)" || "$(type -t conda)" == 'function' ]]; then
+    conda activate 'py27'
 fi
