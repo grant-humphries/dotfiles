@@ -4,8 +4,9 @@
 
 # -h returns human readable file sizes
 alias la='ls -a'
-alias ll='ls -hl'
 alias lal='ls -ahl'
+alias ll='ls -hl'
+alias lsd='ls -d */'  # list directories only
 
 # encourage good javascript habits
 alias node='node --use_strict'
