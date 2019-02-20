@@ -26,10 +26,10 @@ if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
     # windows specific - these aliases are in place to counter the
     # interactive python bug that exists in msys2, detailed here:
     # http://stackoverflow.com/questions/32597209
-    alias node='winpty node --use_strict'
-    alias python='winpty python'
-    alias pip='winpty pip'
-    alias sencha='winpty sencha'
+    alias node='winpty node.exe --use_strict'
+    alias python='winpty python.exe'
+    alias pip='winpty pip.exe'
+    alias sencha='winpty sencha.exe'
 elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
