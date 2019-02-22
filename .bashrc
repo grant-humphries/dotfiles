@@ -155,6 +155,9 @@ launch_ssh_agent() {
     local agent_pid=$( pidof ssh-agent )
 
     if [[ ! -S "${sock_link}" || -z "${agent_pid}" ]]; then
+        # get rid of old ssh-agent files
+        rm -rf /tmp/ssh-*
+
         eval $( ssh-agent -s )
         ln -fs "${SSH_AUTH_SOCK}" "${sock_link}"
     elif [ -z "${SSH_AGENT_PID}" ]; then
