@@ -16,20 +16,30 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # miniconda is used as primary python
     alias cyg-python='/usr/bin/python2'
     alias cyg-pip='/usr/bin/pip2'
-    alias cyg-easy_install='/usr/bin/easy_install-2.7'
 
     # launch new, child cygwin terminal
     alias cyg-term='cygstart mintty bash -il'
 fi
 
 if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
-    # windows specific - these aliases are in place to counter the
-    # interactive python bug that exists in msys2, detailed here:
-    # http://stackoverflow.com/questions/32597209
-    alias node='winpty node.exe --use_strict'
-    alias python='winpty python.exe'
-    alias pip='winpty pip.exe'
-    alias sencha='winpty sencha.exe'
+    # some interactive Windows executables don't function properly in
+    # cygwin terminals like MinTTY, running them with `winpty` resolves
+    # this problem and they are aliased here to always run in that manner
+
+    # more info:
+    # https://stackoverflow.com/questions/3250749
+    # https://github.com/rprichard/winpty/blob/master/README.md
+
+    declare -a winpty_programs=(
+        'node'
+        'pip'
+        'python'
+        'sencha'
+    )
+
+    for name in "${winpty_programs[@]}"; do
+        alias ${name}="winpty ${name}.exe"
+    done
 elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
