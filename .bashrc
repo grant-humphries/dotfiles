@@ -40,6 +40,9 @@ if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
     for name in "${winpty_programs[@]}"; do
         alias ${name}="winpty ${name}.exe"
     done
+
+    # add tab completion for executables with `winpty`
+    complete -c winpty
 elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
