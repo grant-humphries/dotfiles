@@ -101,6 +101,45 @@ PS1="${cyan_brt}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 
 BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)') ${red_brt}» ${reset}"
 
 #----------------------------------------------------------------------
+# Completion
+#----------------------------------------------------------------------
+
+# Resources for writing a completion script
+# * https://debian-administration.org/article/317/An_introduction_to_bash_completion_part_2¬
+# * https://unix.stackexchange.com/a/36563/192229¬
+
+_cd_dot_expansion() {
+    # Extends completion functionality of cd to expand three or more consecutive
+    # dots to notation that moves up multiple directories; for instance typing
+    # `.../<TAB>` will be completed to `../../` and list all of the directories
+    # two levels up
+
+    local path="${COMP_WORDS[COMP_CWORD]}"
+
+    if [[ "${path}" =~ ^\.{3,} ]]; then
+        local dots="${BASH_REMATCH}"
+        local levels="${#dots}"
+        local tail="${path##*...}"
+        local expanded_dots='..'
+
+        # the loop starts at two because the first set of dots is
+        # assigned to `expanded_dots` when it is initialized
+        for (( i = 2; i < "${levels}"; i++ )); do
+            expanded_dots+='/..'
+        done
+
+        path="${expanded_dots}${tail}"
+        COMPREPLY=( $( compgen -A file "${path}" ) )
+
+        return
+    fi
+
+    _cd
+}
+
+complete -o nospace -F _cd_dot_expansion cd
+
+#----------------------------------------------------------------------
 # Functions
 #----------------------------------------------------------------------
 
@@ -118,33 +157,6 @@ add_to_path() {
             export PATH="${PATH}:${add_dir}"
         fi
     fi
-}
-
-# usage: extends functionality of cd to go up additional directory
-# levels when further '.' characters are provided so 'cd ...' moves up
-# two levels, etc.
-cd() {
-    # TODO: figure out how to make 3+ dots work with autocomplete
-
-    local args="${@:1:${#}-1}"
-    local path="${@: -1}"
-
-    if [[ "${path}" =~ ^\.{3,} ]]; then
-        local dots="${BASH_REMATCH}"
-        local tail="${path##*...}"
-        local levels="${#dots}"
-
-        # loop starts at two because the first set of dots is assigned
-        # cmd when it is initialized
-        path='..'
-        for (( i = 2; i < "${levels}"; i++ )); do
-            path="${path}/.."
-        done
-
-        path="${path}${tail}"
-    fi
-
-    builtin cd ${args} "${path}"
 }
 
 # start ssh agent so passphrase doesn't have to be repeatedly entered,
