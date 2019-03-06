@@ -166,10 +166,11 @@ find_permitted() {
     find "${@}" 2>&1 | grep -v 'Permission denied'
 }
 
-# start ssh agent so passphrase doesn't have to be repeatedly entered,
-# the condition here keeps additional instances of the ssh-agent from
-# being created when child login shell are launched
 launch_ssh_agent() {
+    # start ssh agent so passphrase doesn't have to be repeatedly
+    # entered, the condition here keeps additional instances of the
+    # ssh-agent from being created when child login shell are launched
+
     local sock_link="${HOME}/.ssh/ssh_auth_sock"
     local agent_pid=$( pidof ssh-agent )
 
@@ -223,8 +224,9 @@ move_in_path() {
     export PATH
 }
 
-# print each file path in the PATH environment variable on separate line
+
 path() {
+    # print each file path in the PATH environment variable on separate line
     echo "${PATH//:/$'\n'}"
 }
 
