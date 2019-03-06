@@ -159,6 +159,13 @@ add_to_path() {
     fi
 }
 
+find_permitted() {
+    # filter out `find` results for files that that can't be accessed
+    # https://unix.stackexchange.com/a/42842/192229
+
+    find "${@}" 2>&1 | grep -v 'Permission denied'
+}
+
 # start ssh agent so passphrase doesn't have to be repeatedly entered,
 # the condition here keeps additional instances of the ssh-agent from
 # being created when child login shell are launched
