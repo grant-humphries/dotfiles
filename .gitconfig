@@ -3,7 +3,7 @@
     amend = commit -a --amend --no-edit
     ca = commit -a
     co = checkout
-    pusht = push --follow-tags
+    reuse-message = git commit -C HEAD@{1}
     sdiff = diff --staged
     vlog = log --format=medium --date=local
 [color]
