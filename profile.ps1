@@ -6,8 +6,10 @@
 
 
 # Environment Variables
+
 $env:HOME = (Resolve-Path ~)
 $env:PATH += ";$env:ProgramFiles\git\cmd"
+
 
 # Module Imports
 
@@ -32,6 +34,9 @@ function Make-Link ($target, $source) {
     New-Item -Path $source -ItemType SymbolicLink -Value $target
 }
 
+
+# Setup Environment
+
 # enable bash style completion
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 
@@ -39,6 +44,10 @@ Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-Alias ssh-agent "$env:ProgramFiles\git\usr\bin\ssh-agent.exe"
 Set-Alias ssh-add "$env:ProgramFiles\git\usr\bin\ssh-add.exe"
 Start-SshAgent -Quiet
+
+# load `conda` executable and activate Python environment
+. "$env:CONDA_ROOT\shell\condabin\conda-hook.ps1"
+conda activate py27
 
 # start in home directory
 cd ~
