@@ -9,6 +9,7 @@
 
 $env:HOME = (Resolve-Path ~)
 $env:PATH += ";$env:ProgramFiles\git\cmd"
+$env:USER = "$env:USERNAME"
 
 
 # Module Imports
