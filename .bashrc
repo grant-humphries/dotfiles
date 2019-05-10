@@ -193,6 +193,11 @@ find_permitted() {
     find "${@}" 2>&1 | grep -v 'Permission denied'
 }
 
+flat_dos2unix() {
+    # run dos2unix on the files in the pwd only
+    recursive_dos2unix ./ -maxdepth 1
+}
+
 launch_ssh_agent() {
     # start ssh agent so passphrase doesn't have to be repeatedly
     # entered, the condition here keeps additional instances of the
@@ -259,10 +264,6 @@ path() {
 
 recursive_dos2unix() {
     # derived from https://stackoverflow.com/a/7068241/2167004
-
-    # use `recursive_dos2unix ./ -maxdepth 1` to convert only the files
-    # in the in the cwd and not files in subfolders
-
     find "${@:-./}" -type f -exec dos2unix {} \;
 }
 
