@@ -159,6 +159,33 @@ add_to_path() {
     fi
 }
 
+clear_buildout() {
+    # delete all buildout generated files within a project
+
+    local target_dir="${1:-.}"
+
+    if [ ! -f "${target_dir}/buildout.cfg" ]; then
+        echo "buildout.cfg not found, this file must exist in the target directory"
+        return 1
+    fi
+
+    local buildout_items=(
+        '*.egg-info'
+        '.installed.cfg'
+        '.mr.developer.cfg'
+        'bin/'
+        'eggs/'
+        'develop-eggs/'
+        'parts/'
+        'src-develop-eggs/'
+    )
+
+    for i in "${buildout_items[@]}"; do
+        # the `i` variable must *not* be quoted for wildcards to work with rm
+        rm -rf "${target_dir}"/${i}
+    done
+}
+
 find_permitted() {
     # filter out `find` results for files that that can't be accessed
     # https://unix.stackexchange.com/a/42842/192229
