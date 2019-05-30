@@ -35,8 +35,29 @@ function Make-Link ($target, $source) {
     New-Item -Path $source -ItemType SymbolicLink -Value $target
 }
 
+function Set-ConsoleSize(
+    [int]$height=24,
+    [int]$width=80,
+    [int]$bufferHeight=3000
+) {
+    $console = $Host.UI.RawUI
+    $hostSize = [System.Management.Automation.Host.Size]
+    $windowSize = New-Object $hostSize($width, $height)
+    $bufferSize = New-Object $hostSize($width, $bufferHeight)
 
-# Setup Environment
+    if ($console.BufferSize.width -lt $width) {
+        $console.BufferSize = $bufferSize
+        $console.WindowSize = $windowSize
+    } else {
+        $console.WindowSize = $windowSize
+        $console.BufferSize = $bufferSize
+    }
+}
+
+
+# Activations & Settings
+
+Set-ConsoleSize
 
 # enable bash style completion
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
