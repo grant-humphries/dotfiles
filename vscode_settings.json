@@ -1,6 +1,7 @@
 {
     "editor.fontSize": 12,
     "editor.renderWhitespace": "all",
+    "editor.rulers": [80],
     "files.autoSave": "onFocusChange",
     "files.eol": "\n",
     "files.insertFinalNewline": true,
