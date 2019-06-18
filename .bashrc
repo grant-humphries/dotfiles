@@ -280,6 +280,9 @@ HISTCONTROL=ignoredups:erasedups
 HISTSIZE=1000
 HISTFILESIZE=5000
 
+# append in memory history to .bash_history after each command
+PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
+
 # when shell exits, append history instead of overwriting it
 shopt -s histappend
 
