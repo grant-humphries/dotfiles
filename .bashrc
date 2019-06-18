@@ -280,7 +280,7 @@ HISTCONTROL=ignoredups:erasedups
 HISTSIZE=1000
 HISTFILESIZE=5000
 
-# when shell exists, append history instead of overwriting it
+# when shell exits, append history instead of overwriting it
 shopt -s histappend
 
 # make globbing case insensitive
