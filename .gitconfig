@@ -1,4 +1,5 @@
 [alias]
+    add-x = update-index --chmod=+x
     aliases = !git config -l | grep -e "^alias\\." | cut -c 7-
     amend = commit --amend --no-edit
     ca = commit -a
@@ -11,10 +12,10 @@
 [core]
     # if line endings are CRLF convert them to LF on commit, otherwise
     # leave them alone
-    autocrlf = input
+    autoCrlf = input
     editor = vim
-    filemode = false
-    trustctime = false
+    hooksPath = ~/.git-templates/hooks
+    trustCtime = false
 [credential]
     helper = cache --timeout=86400
 [diff]
@@ -25,8 +26,6 @@
     # https://git-scm.com/docs/pretty-formats
     # https://stackoverflow.com/a/9463536/2167004
     pretty = %C(auto,yellow)%h %C(auto,blue)%>(8,trunc)%ad %C(auto,green)%<(7,trunc)%aN %C(auto,reset)%s %C(auto,red)%<(7,trunc)%D
-[init]
-    templatedir = ~/.git-templates
 [log]
     date = relative
 [merge]
@@ -42,4 +41,6 @@
     useConfigOnly = true
 
 [include]
+    # files that don't exist will be ignored with out error
     path = ~/.gitconfig.local
+    path = ~/.gitconfig.windows

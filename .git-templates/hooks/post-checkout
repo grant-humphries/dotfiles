@@ -3,13 +3,42 @@
 # make regex matching below case insensitive
 shopt -s nocasematch
 
-# values in the services array should have a corresponding section in
-# .gitconfig where the 'name' and 'email' for that service are specified
-remote_url="$( git config --get --local remote.origin.url )"
-services=(
-    'github'
-    'gitlab'
-)
+
+config_user_by_service() {
+    # values in the services array should have a corresponding section in
+    # .gitconfig where the 'name' and 'email' for that service are specified
+    local remote_url="$( git config --get --local remote.origin.url )"
+    local services=(
+        'github'
+        'gitlab'
+    )
+
+    # if remote_url doesn't match any of the values in the services array the
+    # user name and email will remain unset and the `user.useConfigOnly = true`
+    # setting in .gitconfig will prompt for those credentials and prevent
+    # commits until they are defined
+    for s in "${services[@]}"; do
+        if [[ "${remote_url}" =~ "${s}" ]]; then
+            set_local_user_config "${s}" 'name'
+            set_local_user_config "${s}" 'email'
+            break
+        fi
+    done
+}
+
+config_file_mode_tracking_by_os() {
+    # If file permission tracking is enabled at the repo level and running
+    # cygwin-git clear that setting so the global config will apply.  When on
+    # Windows the global setting `core.fileMode = false` usually works best as
+    # it disables file mode tracking which Windows is not designed to do
+
+    local core_file_mode=$( git config --local core.fileMode )
+
+    if [[ "${OSTYPE}" == 'cygwin' && "${core_file_mode}" == 'true' ]]; then
+        git config --local --unset core.fileMode
+        echo 'local `core.fileMode` has been unset since checkout is via cygwin git'
+    fi
+}
 
 set_local_user_config() {
     local service="${1}"
@@ -19,18 +48,10 @@ set_local_user_config() {
 
     if [[ "${local_config}" != "${service_config}" ]]; then
         git config --local "user.${config}" "${service_config}"
-        echo "repo 'user.${config}' has been set to '${service_config}'"
+        echo "repo \`user.${config}\` has been set to '${service_config}'"
     fi
 }
 
-# if remote_url doesn't contain the any of the values in the services
-# array the user name and email will remain unset and the
-# user.useConfigOnly = true setting in .gitconfig will prompt for those
-# credentials and prevent commits until they are defined
-for s in "${services[@]}"; do
-    if [[ "${remote_url}" =~ "${s}" ]]; then
-        set_local_user_config "${s}" 'name'
-        set_local_user_config "${s}" 'email'
-        break
-    fi
-done
+
+config_user_by_service
+config_file_mode_tracking_by_os
