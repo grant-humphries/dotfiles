@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 " pathogen: https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 syntax enable
