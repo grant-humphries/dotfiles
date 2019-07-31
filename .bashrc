@@ -296,14 +296,3 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # ignore carriage returns in line endings
     set -o igncr
 fi
-
-#----------------------------------------------------------------------
-# Activation
-#----------------------------------------------------------------------
-
-# conda-python: in order for the `conda` executable to present in PATH
-# `<conda-install-dir>/etc/profile.d/conda.sh` should be symlinked into
-# `/etc/profile.d`
-if [[ -x "$(command -v conda)" || "$(type -t conda)" == 'function' ]]; then
-    conda activate 'py27'
-fi
