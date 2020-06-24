@@ -7,7 +7,6 @@
   editor:
     invisibles: {}
     showInvisibles: true
-    tabLength: 4
   "exception-reporting":
     userId: "335ca336-ee06-a9aa-ddff-6fccae4a8e3d"
   "line-ending-selector":

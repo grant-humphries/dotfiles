@@ -1,4 +1,6 @@
 packages: [
+  "busy-signal"
+  "intentions"
   "language-batch"
   "language-bbcode"
   "language-diff"
@@ -8,7 +10,10 @@ packages: [
   "language-oracle"
   "language-pgsql"
   "language-powershell"
+  "linter"
+  "linter-ui-default"
   "multi-cursor"
   "open-recent"
   "package-sync"
+  "prettier-atom"
 ]
