@@ -15,7 +15,7 @@
     autoCrlf = input
     editor = vim
     hooksPath = ~/.git-templates/hooks
-    trustCtime = false
+    trustctime = false
 [credential]
     helper = cache --timeout=86400
 [diff]
@@ -41,6 +41,6 @@
     useConfigOnly = true
 
 [include]
-    # files that don't exist will be ignored with out error
+    # files that don't exist will be ignored without error
     path = ~/.gitconfig.local
     path = ~/.gitconfig.windows

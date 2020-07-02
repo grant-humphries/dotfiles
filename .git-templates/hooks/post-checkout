@@ -27,7 +27,7 @@ config_user_by_service() {
 }
 
 config_file_mode_tracking_by_os() {
-    # If file permission tracking is enabled at the repo level and running
+    # if file permission tracking is enabled at the repo level and running
     # cygwin-git clear that setting so the global config will apply.  When on
     # Windows the global setting `core.fileMode = false` usually works best as
     # it disables file mode tracking which Windows is not designed to do
