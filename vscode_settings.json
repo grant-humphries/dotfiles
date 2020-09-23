@@ -7,6 +7,8 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "git.path": "C:\\cygwin64\\home\\humphrig\\bin\\vscode-git.exe",
+    "gitlens.hovers.enabled": false,
     "terminal.integrated.fontSize": 12,
 
     // set cygwin as default window shell and make it it an interactive
@@ -18,5 +20,5 @@
     "terminal.integrated.env.windows": {
         "CHERE_INVOKING": "1"
     },
-    "gitlens.hovers.enabled": false
+    "window.openFoldersInNewWindow": "on"
 }
