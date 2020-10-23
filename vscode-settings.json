@@ -1,25 +1,29 @@
 {
-    "editor.fontSize": 12,
-    "editor.formatOnSave": true,
-    "editor.renderWhitespace": "all",
-    "editor.rulers": [80],
-    "files.autoSave": "onFocusChange",
-    "files.eol": "\n",
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "git.path": "C:\\cygwin64\\home\\humphrig\\bin\\vscode-git.exe",
-    "gitlens.hovers.enabled": false,
-    "terminal.integrated.fontSize": 12,
+  "editor.fontSize": 12,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveTimeout": 3000,
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [80],
+  "files.autoSave": "onFocusChange",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "gitlens.hovers.enabled": false,
+  "prettier.eslintIntegration": true,
+  "terminal.integrated.fontSize": 12,
 
-    // set cygwin as default window shell and make it it an interactive
-    // login shell
-    "terminal.integrated.shell.windows": "C:\\cygwin64\\bin\\bash.exe",
-    "terminal.integrated.shellArgs.windows": ["-il"],
+  // set cygwin as default window shell and make it it an interactive
+  // login shell
+  "terminal.integrated.shell.windows": "C:\\cygwin64\\bin\\bash.exe",
+  "terminal.integrated.shellArgs.windows": ["-il"],
 
-    // don't cd to $HOME when starting a bash session
-    "terminal.integrated.env.windows": {
-        "CHERE_INVOKING": "1"
-    },
-    "window.openFoldersInNewWindow": "on"
+  // don't cd to $HOME when starting a bash session
+  "terminal.integrated.env.windows": {
+    "CHERE_INVOKING": "1"
+  },
+  "window.openFoldersInNewWindow": "on",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
