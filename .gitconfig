@@ -32,6 +32,8 @@
     tool = vimdiff
 [mergetool]
     keepBackup = false
+[pull]
+    ff = only
 [push]
     default = upstream
     followTags = true
