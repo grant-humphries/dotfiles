@@ -15,7 +15,7 @@ install_dotfiles() {
         '.vimrc'
     )
 
-    # add Windows specific configs if on that platfrom
+    # add Windows specific configs if on that platform
     if [[ "${OSTYPE}" == 'cygwin' ]]; then
         dotfiles+=(
             '.gitconfig.windows'
@@ -23,7 +23,7 @@ install_dotfiles() {
         )
     fi
 
-    local dotfiles_repo=$( cd $(dirname ${0}); dirname $(pwd -P) )
+    local dotfiles_repo=$( cd "$(dirname "${0}")"; dirname "$(pwd -P)" )
     local default_dotfiles='/tmp/default_dotfiles'
 
     mkdir -p "${default_dotfiles}"
