@@ -29,15 +29,6 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # Python doesn't know how to read the value in the format cygwin
     # provides which causes the timezone to be UTC instead of local
     unset TZ
-elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
-    # environment variables that will help python packages find the
-    # c/c++ libraries that they rely upon
-    # http://gis.stackexchange.com/questions/28966/
-    export C_INCLUDE_PATH='/usr/include/gdal'
-    export CPLUS_INCLUDE_PATH='/usr/include/gdal'
-
-    # https://github.com/jswhit/pyproj/issues/97
-    export PROJ_DIR='/usr'
 elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # these are required for connect with cx_Oracle
     export TNS_ADMIN="/usr/local/lib/oracle"
