@@ -48,10 +48,7 @@ add_to_path "${HOME}/.rvm/bin"
 # SSH Config
 #----------------------------------------------------------------------
 
-# launch ssh agent if not ssh'ed into a remote host
-if [ -z "${SSH_TTY}" ]; then
-    launch_ssh_agent
-fi
+launch_ssh_agent
 
 #----------------------------------------------------------------------
 # Script Sourcing
