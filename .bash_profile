@@ -35,6 +35,14 @@ elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     export ORACLE_HOME="${TNS_ADMIN}/client"
     export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
     export DYLD_LIBRARY_PATH="${ORACLE_HOME}:${DYLD_LIBRARY_PATH}"
+
+    # nvm config for homebrew install
+    export NVM_DIR="$HOME/.nvm"
+
+    # This loads nvm
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] \
+        && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 fi
 
 #----------------------------------------------------------------------
