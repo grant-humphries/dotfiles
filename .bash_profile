@@ -29,7 +29,11 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
     # Python doesn't know how to read the value in the format cygwin
     # provides which causes the timezone to be UTC instead of local
     unset TZ
+# macOS
 elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
+    # add homebrew to PATH
+    export PATH=/opt/homebrew/bin:$PATH
+
     # these are required for connect with cx_Oracle
     export TNS_ADMIN="/usr/local/lib/oracle"
     export ORACLE_HOME="${TNS_ADMIN}/client"
