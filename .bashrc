@@ -104,9 +104,9 @@ BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)') ${re
 # Completion
 #----------------------------------------------------------------------
 
-# Resources for writing a completion script
-# * https://debian-administration.org/article/317/An_introduction_to_bash_completion_part_2¬
-# * https://unix.stackexchange.com/a/36563/192229¬
+# Resources for writing a completion script:
+# https://debian-administration.org/article/317/An_introduction_to_bash_completion_part_2
+# https://unix.stackexchange.com/a/36563/192229
 
 _cd_dot_expansion() {
     # Extends completion functionality of cd to expand three or more consecutive

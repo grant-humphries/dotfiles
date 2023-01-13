@@ -32,21 +32,25 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
 # macOS
 elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # add homebrew to PATH
-    export PATH=/opt/homebrew/bin:$PATH
+    export PATH="/opt/homebrew/bin:${PATH}"
 
-    # these are required for connect with cx_Oracle
+    # load bash completion
+    bash_completion="/opt/homebrew/etc/profile.d/bash_completion.sh"
+    [[ -r "${bash_completion}" ]] && . "${bash_completion}"
+
+    # setup nvm
+    export NVM_DIR="${HOME}/.nvm"
+    nvm="/opt/homebrew/opt/nvm/nvm.sh"
+    nvm_completion="/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+    [ -s "${nvm}" ] && . "${nvm}"
+    [ -s "${nvm_completion}" ] && . "${nvm_completion}"
+
+    # these are required to connect with cx_Oracle
     export TNS_ADMIN="/usr/local/lib/oracle"
     export ORACLE_HOME="${TNS_ADMIN}/client"
     export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
     export DYLD_LIBRARY_PATH="${ORACLE_HOME}:${DYLD_LIBRARY_PATH}"
-
-    # nvm config for homebrew install
-    export NVM_DIR="$HOME/.nvm"
-
-    # This loads nvm
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] \
-        && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 fi
 
 #----------------------------------------------------------------------
