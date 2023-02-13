@@ -16,7 +16,7 @@ path_map['/c/Program Files (x86)']="${WINDOWS_DIR}/ProgramFiles32"
 path_map['/c/Program Files']="${WINDOWS_DIR}/ProgramFiles64"
 
 # create links for all drives so that can be accessed as /c, etc
-ln -sfn '/cygdrive/*' '/'
+ln -sfn /cygdrive/* /
 
 # create custom links into default windows file structure
 mkdir -p "${WINDOWS_DIR}"
