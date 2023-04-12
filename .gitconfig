@@ -4,9 +4,10 @@
     amend = commit --amend --no-edit
     ca = commit -a
     co = checkout
+    diff-exclude = !git diff -- . ":!${1}"
     force-pull = !git fetch && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
     reuse-message = commit -C HEAD@{1}
-    sdiff = diff --staged
+    s-diff = diff --staged
     vlog = log --format=medium --date=local
 [color]
     ui = true
