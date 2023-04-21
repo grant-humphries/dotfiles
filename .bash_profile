@@ -2,7 +2,7 @@
 [[ -r "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"
 
 #----------------------------------------------------------------------
-# Environment Variables
+# Environment Variables and Path Adjustments
 #----------------------------------------------------------------------
 # any environment variables declared here should not be bash specific,
 # put bash specific variables in .bashrc
@@ -67,9 +67,8 @@ if [ -d "${PYENV_ROOT}" ]; then
     eval "$(pyenv init -)"
 fi
 
-#----------------------------------------------------------------------
-# Path Adjustments
-#----------------------------------------------------------------------
+# Sencha Cmd
+add_to_path "${HOME}/bin/Sencha/Cmd"
 
 # Ruby version manager
 add_to_path "${HOME}/.rvm/bin"
