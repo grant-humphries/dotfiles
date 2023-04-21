@@ -4,6 +4,3 @@
 [submodule ".vim/bundle/vim-better-whitespace"]
     path = .vim/bundle/vim-better-whitespace
     url = https://github.com/ntpeters/vim-better-whitespace.git
-[submodule "intellij-settings"]
-    path = intellij-settings
-    url = https://github.com/grant-humphries/intellij-settings.git
