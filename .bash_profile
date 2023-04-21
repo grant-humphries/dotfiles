@@ -51,6 +51,20 @@ elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     export ORACLE_HOME="${TNS_ADMIN}/client"
     export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
     export DYLD_LIBRARY_PATH="${ORACLE_HOME}:${DYLD_LIBRARY_PATH}"
+# Ubuntu
+elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
+    export NVM_DIR="$HOME/.nvm"
+
+    # load nvm and its bash completion
+    [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"
+    [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"
+fi
+
+PYENV_ROOT="$HOME/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PYENV_ROOT
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
 fi
 
 #----------------------------------------------------------------------
