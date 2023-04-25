@@ -2,7 +2,7 @@
 [[ -r "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"
 
 #----------------------------------------------------------------------
-# Environment Variables and Path Adjustments
+# Environment Variables and PATH Adjustments
 #----------------------------------------------------------------------
 # any environment variables declared here should not be bash specific,
 # put bash specific variables in .bashrc
@@ -32,7 +32,7 @@ if [[ "${OSTYPE}" == 'cygwin' ]]; then
 # macOS
 elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # add homebrew to PATH
-    export PATH="/opt/homebrew/bin:${PATH}"
+    add_to_path '/opt/homebrew/bin'
 
     # load bash completion
     bash_completion="/opt/homebrew/etc/profile.d/bash_completion.sh"
@@ -53,9 +53,8 @@ elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     export DYLD_LIBRARY_PATH="${ORACLE_HOME}:${DYLD_LIBRARY_PATH}"
 # Ubuntu
 elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
-    export NVM_DIR="$HOME/.nvm"
-
     # load nvm and its bash completion
+    export NVM_DIR="$HOME/.nvm"
     [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"
     [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"
 
@@ -74,7 +73,7 @@ fi
 PYENV_ROOT="$HOME/.pyenv"
 if [ -d "${PYENV_ROOT}" ]; then
     export PYENV_ROOT
-    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    command -v pyenv >/dev/null || add_to_path "${PYENV_ROOT}/bin"
     eval "$(pyenv init -)"
 fi
 
