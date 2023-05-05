@@ -38,7 +38,9 @@ install_dotfiles() {
             mv_flag=1
         fi
 
-        ln -s "${source}" "${link}"
+        # valid files are moved above, but the `f` flag causes broken
+        # symlinks to be overwritten
+        ln -sf "${source}" "${link}"
     done
 
     if [[ -n "${mv_flag}" ]]; then
