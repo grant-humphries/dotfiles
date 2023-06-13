@@ -39,6 +39,8 @@
 [push]
     default = upstream
     followTags = true
+[rebase]
+    instructionFormat = %<(8,trunc)%an %s
 [tag]
     sort = -version:refname
 [user]
