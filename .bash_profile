@@ -83,6 +83,9 @@ add_to_path "${HOME}/bin/Sencha/Cmd"
 # Ruby version manager
 add_to_path "${HOME}/.rvm/bin"
 
+# python-poetry
+add_to_path "${HOME}/.local/bin"
+
 #----------------------------------------------------------------------
 # SSH Config
 #----------------------------------------------------------------------
