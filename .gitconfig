@@ -28,6 +28,8 @@
     # https://git-scm.com/docs/pretty-formats
     # https://stackoverflow.com/a/9463536/2167004
     pretty = %C(auto,yellow)%h %C(auto,blue)%>(8,trunc)%ad %C(auto,green)%<(7,trunc)%aN %C(auto,reset)%s %C(auto,red)%<(7,trunc)%D
+[init]
+    defaultBranch = main
 [log]
     date = relative
 [merge]
