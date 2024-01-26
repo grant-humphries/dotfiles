@@ -63,7 +63,7 @@ elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     if [ -d "${ORACLE_BASE}" ]; then
         # the active version of instant client, which has the version number
         # in its folder name, should be symlinked to $ORACLE_HOME
-        export ORACLE_HOME="${ORACLE_BASE}/instant_client"
+        export ORACLE_HOME="${ORACLE_BASE}/instant-client"
         export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
         export TNS_ADMIN="${ORACLE_BASE}/oracle_client_config"
         add_to_path "${ORACLE_HOME}"
