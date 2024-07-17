@@ -6,7 +6,10 @@ Config files for unix applications
   ```bash
   git submodule update --init
   ```
-* Run the script `./scripts/install_dotfiles` in a bash shell
+* Run the following command in a bash shell
+  ```shell
+  sudo -E ./scripts/install_config.sh
+  ```
 * Copy `.gitconfig.local` file to home directory (this file can't be kept under
   version control due to sensitive contents)
 * If not already installed, via package manager install:
