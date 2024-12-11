@@ -15,6 +15,13 @@ install_dotfiles() {
         '.vimrc'
     )
 
+    # files for WSL only
+    if [ -n "$WSL_INTEROP" ]; then
+      dotfiles+=(
+        '.trimet_bash_profile'
+      )
+    fi
+
     # add Windows specific configs if on that platform
     if [[ "${OSTYPE}" == 'cygwin' ]]; then
         dotfiles+=(

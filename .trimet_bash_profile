@@ -1,0 +1,15 @@
+# setup connection to Oracle database
+ORACLE_BASE="${HOME}/opt/oracle"
+if [ -d "$ORACLE_BASE" ]; then
+    # the active version of instant client, which has the version number
+    # in its folder name, should be symlinked to $ORACLE_HOME
+    export ORACLE_HOME="${ORACLE_BASE}/instant-client"
+    export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
+    export TNS_ADMIN="${ORACLE_BASE}/oracle_client_config"
+    add_to_path "$ORACLE_HOME"
+fi
+
+ZSCALER_CERT_PATH='/usr/local/share/ca-certificates/ZscalerRootCertificate-2048-SHA256.crt'
+export NODE_EXTRA_CA_CERTS="$ZSCALER_CERT_PATH"
+export SSL_CERT_FILE="$ZSCALER_CERT_PATH"
+export CURL_CA_BUNDLE="$ZSCALER_CERT_PATH"

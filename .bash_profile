@@ -51,31 +51,25 @@ elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
     export ORACLE_HOME="${TNS_ADMIN}/client"
     export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
     export DYLD_LIBRARY_PATH="${ORACLE_HOME}:${DYLD_LIBRARY_PATH}"
-# Ubuntu
-elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
+fi
+
+NVM_DIR="${HOME}/.nvm"
+if [ -d "$NVM_DIR" ]; then
     # load nvm and its bash completion
-    export NVM_DIR="${HOME}/.nvm"
+    export NVM_DIR
     [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"
     [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"
-
-    # setup connection to Oracle database
-    ORACLE_BASE="${HOME}/opt/oracle"
-    if [ -d "${ORACLE_BASE}" ]; then
-        # the active version of instant client, which has the version number
-        # in its folder name, should be symlinked to $ORACLE_HOME
-        export ORACLE_HOME="${ORACLE_BASE}/instant-client"
-        export LD_LIBRARY_PATH="${ORACLE_HOME}:${LD_LIBRARY_PATH}"
-        export TNS_ADMIN="${ORACLE_BASE}/oracle_client_config"
-        add_to_path "${ORACLE_HOME}"
-    fi
 fi
 
 PYENV_ROOT="$HOME/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
+if [ -d "$PYENV_ROOT" ]; then
     export PYENV_ROOT
     command -v pyenv >/dev/null || add_to_path "${PYENV_ROOT}/bin"
     eval "$(pyenv init -)"
 fi
+
+TRIMET_BASH_PROFILE="${HOME}/.trimet_bash_profile"
+[[ -r "$TRIMET_BASH_PROFILE" ]] && source "$TRIMET_BASH_PROFILE"
 
 # Sencha Cmd
 add_to_path "${HOME}/bin/Sencha/Cmd"
