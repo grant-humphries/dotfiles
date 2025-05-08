@@ -51,4 +51,5 @@
 [include]
     # files that don't exist will be ignored without error
     path = ~/.gitconfig.local
+    path = ~/.gitconfig.trimet
     path = ~/.gitconfig.windows

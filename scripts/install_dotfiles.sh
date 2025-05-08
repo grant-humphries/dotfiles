@@ -19,6 +19,7 @@ install_dotfiles() {
     if [ -n "$WSL_INTEROP" ]; then
       dotfiles+=(
         '.trimet_bash_profile'
+        '.gitconfig.trimet'
       )
     fi
 
