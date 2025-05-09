@@ -1,4 +1,4 @@
 [alias]
     # check how many lines have been modified on a feature branch compared
     # to `develop` excluding auto-generated files, etc. i.e. merge request size
-    trimet-dot-org-mr-size = diff --stat origin/develop -- ':!*.snap' ':!yarn.lock' ':!*.svg' ':!mocks/**'
+    trimet-dot-org-mr-size = diff --stat origin/develop -- ':!*.snap' ':!yarn.lock' ':!*.svg' ':!**/mocks/**' ':!**/GeneratedIcons/**'
