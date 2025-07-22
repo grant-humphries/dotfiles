@@ -6,4 +6,5 @@
         ':!yarn.lock' \
         ':!*.svg' \
         ':!**/mocks/**' \
-        ':!**/GeneratedIcons/**'
+        ':!**/GeneratedIcons/**' \
+        ':!*.test.*'
