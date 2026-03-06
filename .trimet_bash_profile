@@ -11,3 +11,8 @@ fi
 
 ZSCALER_CERT_PATH='/usr/local/share/ca-certificates/ZscalerRootCertificate-2048-SHA256.crt'
 export NODE_EXTRA_CA_CERTS="$ZSCALER_CERT_PATH"
+
+# Convert a Windows path to a WSL path and format the Markdown file with Prettier
+format_wsl_markdown() {
+  yarn prettier --prose-wrap always --write "$(wslpath "$1")"
+}
