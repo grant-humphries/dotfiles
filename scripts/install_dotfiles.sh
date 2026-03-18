@@ -2,43 +2,37 @@
 set -e
 
 install_dotfiles() {
-    local dotfiles=(
-        '.bashrc'
-        '.bash_logout'
-        '.bash_profile'
-        '.inputrc'
-        '.gitconfig'
-        '.git-completion.bash'
-        '.git-prompt.sh'
-        '.git-templates'
-        '.vim'
-        '.vimrc'
+    local -A dotfiles=(
+        ['.bashrc']=''
+        ['.bash_logout']=''
+        ['.bash_profile']=''
+        ['.inputrc']=''
+        ['.gitconfig']=''
+        ['.git-completion.bash']=''
+        ['.git-prompt.sh']=''
+        ['.git-templates']=''
+        ['.vim']=''
+        ['.vimrc']=''
     )
 
     # files for WSL only
     if [ -n "$WSL_INTEROP" ]; then
       dotfiles+=(
-        '.trimet_bash_profile'
-        '.gitconfig.trimet'
+        ['.trimet_bash_profile']=''
+        ['.gitconfig.trimet']=''
+        ['settings.json']="${HOME}/.vscode-server/data/Machine"
       )
-    fi
-
-    # add Windows specific configs if on that platform
-    if [[ "${OSTYPE}" == 'cygwin' ]]; then
-        dotfiles+=(
-            '.gitconfig.windows'
-            '.minttyrc'
-        )
     fi
 
     local dotfiles_repo=$( cd "$(dirname "${0}")"; dirname "$(pwd -P)" )
     local default_dotfiles='/tmp/default_dotfiles'
+    local mv_flag=
 
     mkdir -p "${default_dotfiles}"
 
-    for df in "${dotfiles[@]}"; do
-        local source="${dotfiles_repo}/${df}"
-        local link="${HOME}/${df}"
+    for dotfile_name in "${!dotfiles[@]}"; do
+        local source="${dotfiles_repo}/${dotfile_name}"
+        local link="${dotfiles[$dotfile_name]:-${HOME}}/${dotfile_name}"
 
         # check if file or symlink already exists in link location
         if [[ -e "${link}" ]]; then

@@ -1,4 +1,0 @@
-# Windows specific git configurations
-
-[core]
-    fileMode = false
