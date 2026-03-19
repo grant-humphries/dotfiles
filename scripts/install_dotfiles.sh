@@ -52,3 +52,12 @@ install_dotfiles() {
 }
 
 install_dotfiles
+
+# Setup vim plug-ins (install plugin manager and plug-ins)
+
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+vim +PlugInstall +qall
