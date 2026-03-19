@@ -16,5 +16,6 @@
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "prettier.eslintIntegration": true,
-  "window.openFoldersInNewWindow": "on"
+  "window.openFoldersInNewWindow": "on",
+  "workbench.colorTheme": "SynthWave '84"
 }
