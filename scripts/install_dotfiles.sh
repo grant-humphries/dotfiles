@@ -18,7 +18,7 @@ install_dotfiles() {
     # files for WSL only
     if [ -n "$WSL_INTEROP" ]; then
       dotfiles+=(
-        ['.trimet_bash_profile']=''
+        ['.bashrc.trimet']=''
         ['.gitconfig.trimet']=''
         ['settings.json']="${HOME}/.vscode-server/data/Machine"
       )

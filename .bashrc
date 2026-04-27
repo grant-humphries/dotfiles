@@ -1,4 +1,136 @@
 #----------------------------------------------------------------------
+# Script Sourcing
+#----------------------------------------------------------------------
+
+safe_source() {
+    local path="$1"
+
+    if [[ -r "$path" ]]; then
+        source "$path"
+        return 0
+    fi
+
+    return 1
+}
+
+# bash completion
+
+bash_completion_scripts=(
+    '/etc/bash_completion'
+    '/usr/share/bash-completion/bash_completion'
+    '/opt/homebrew/etc/profile.d/bash_completion.sh'
+)
+
+for script in "${bash_completion_scripts[@]}"; do
+    if safe_source "$script"; then
+        break
+    fi
+done
+
+#----------------------------------------------------------------------
+# PATH Utils
+#----------------------------------------------------------------------
+
+add_to_path() {
+    # supply a second parameter to have the add the new directory to
+    # the back rather than the front of the path
+    local add_dir="$1"
+    local append="${2:-front}"
+
+    # only add if directory exists and is not already in path
+    if [[ -d "$add_dir" && ! "$PATH" =~ (^|:)${add_dir}(:|$) ]]; then
+        if [ "$append" == 'front' ]; then
+            export PATH="${add_dir}:${PATH}"
+        else
+            export PATH="${PATH}:${add_dir}"
+        fi
+    fi
+}
+
+move_in_path() {
+    # moves any items in PATH that contain the string provided in the
+    # first parameter to the front of PATH, if a second parameter is
+    # supplied it moves them to them back of PATH instead
+
+    local match_str="$1"
+    local append="${2:-front}"
+    local default_IFS="$IFS"
+    local match_path=''
+    local other_path=''
+
+    # temporarily change IFS to a colon so the items in PATH can be
+    # iterated over
+    IFS=':'
+
+    # note that if PATH is quoted here iteration won't work
+    for p in ${PATH}; do
+        if [[ "$p" =~ "$match_str" ]]; then
+            match_path+="${p}:"
+        else
+            other_path+="${p}:"
+        fi
+    done
+
+    if [ "${append}" == 'front' ]; then
+        PATH="${match_path}${other_path%:}"
+    else
+        PATH="${other_path}${match_path%:}"
+    fi
+
+    IFS="$default_IFS"
+    export PATH
+}
+
+path() {
+    # print each file path in the PATH environment variable on separate line
+    echo "${PATH//:/$'\n'}"
+}
+
+#----------------------------------------------------------------------
+# PATH Management
+#----------------------------------------------------------------------
+
+paths_to_add=(
+    "${HOME}/bin/Sencha/Cmd" # Sencha Cmd
+    "${HOME}/.local/bin" # Poetry (Python)
+    "/opt/homebrew/bin" # Homebrew
+)
+
+for p in "${paths_to_add[@]}"; do
+    add_to_path "$p"
+done
+
+#----------------------------------------------------------------------
+# Dev environment managers
+#----------------------------------------------------------------------
+
+# NVM
+NVM_DIR="${HOME}/.nvm"
+if [ -d "$NVM_DIR" ]; then
+    export NVM_DIR
+
+    # load nvm and its bash completion
+    nvm="${NVM_DIR}/nvm.sh"
+    nvm_completion="${NVM_DIR}/bash_completion"
+
+    if [[ "$OSTYPE" =~ 'darwin' ]]; then
+        nvm='/opt/homebrew/opt/nvm/nvm.sh'
+        nvm_completion='/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm'
+    fi
+
+    safe_source "$nvm"
+    safe_source "$nvm_completion"
+fi
+
+# pyenv
+PYENV_ROOT="$HOME/.pyenv"
+if [ -d "$PYENV_ROOT" ]; then
+    export PYENV_ROOT
+    command -v pyenv >/dev/null || add_to_path "${PYENV_ROOT}/bin"
+    eval "$(pyenv init -)"
+fi
+
+#----------------------------------------------------------------------
 # Aliases
 #----------------------------------------------------------------------
 
@@ -53,12 +185,12 @@ if [[ "${OSTYPE}" =~ 'darwin' ]]; then
 fi
 
 #----------------------------------------------------------------------
-# Prompt
+# Git Prompt
 #----------------------------------------------------------------------
 
 # enable git autocompletion and access to the __git_ps1 function
-source "${HOME}/.git-completion.bash"
-source "${HOME}/.git-prompt.sh"
+safe_source "${HOME}/.git-completion.bash"
+safe_source "${HOME}/.git-prompt.sh"
 
 # see .git-prompt.sh in this repo for explanation of these
 GIT_PS1_SHOWDIRTYSTATE='true'
@@ -66,10 +198,9 @@ GIT_PS1_SHOWSTASHSTATE='true'
 
 lightning_bolt='⚡'
 PS1="${cyan_brt}\u${reset}@${blue}\h${reset}:\n${cyan}\w${magenta} \$(__git_ps1 '(%s)') ${red_brt}~> ${reset}"
-BABUN_PS1="${blue}{ ${blue_brt}\W ${blue}} ${green_brt}\$(__git_ps1 '(%s)') ${red_brt}» ${reset}"
 
 #----------------------------------------------------------------------
-# Completion
+# Custom Completion
 #----------------------------------------------------------------------
 
 # Resources for writing a completion script:
@@ -108,63 +239,8 @@ _cd_dot_expansion() {
 complete -o nospace -F _cd_dot_expansion cd
 
 #----------------------------------------------------------------------
-# Functions
+# SSH Agent
 #----------------------------------------------------------------------
-
-add_to_path() {
-    # supply a second parameter to have the add the new directory to
-    # the back rather than the front of the path
-    local add_dir="${1}"
-    local append="${2:-front}"
-
-    # only add if directory exists and is not already in path
-    if [[ -d "${add_dir}" && ! "${PATH}" =~ (^|:)${add_dir}(:|$) ]]; then
-        if [ "${append}" == 'front' ]; then
-            export PATH="${add_dir}:${PATH}"
-        else
-            export PATH="${PATH}:${add_dir}"
-        fi
-    fi
-}
-
-clear_buildout() {
-    # delete all buildout generated files within a project
-
-    local target_dir="${1:-.}"
-
-    if [ ! -f "${target_dir}/buildout.cfg" ]; then
-        echo "buildout.cfg not found, this file must exist in the target directory"
-        return 1
-    fi
-
-    local buildout_items=(
-        '*.egg-info'
-        '.installed.cfg'
-        '.mr.developer.cfg'
-        'bin/'
-        'eggs/'
-        'develop-eggs/'
-        'parts/'
-        'src-develop-eggs/'
-    )
-
-    for i in "${buildout_items[@]}"; do
-        # the `i` variable must *not* be quoted for wildcards to work with rm
-        rm -rf "${target_dir}"/${i}
-    done
-}
-
-find_permitted() {
-    # filter out `find` results for files that that can't be accessed
-    # https://unix.stackexchange.com/a/42842/192229
-
-    find "${@}" 2>&1 | grep -v 'Permission denied'
-}
-
-flat_dos2unix() {
-    # run dos2unix on the files in the pwd only
-    recursive_dos2unix ./ -maxdepth 1
-}
 
 launch_ssh_agent() {
     # start ssh agent so passphrase doesn't have to be repeatedly
@@ -190,50 +266,7 @@ launch_ssh_agent() {
     ssh-add -l &> '/dev/null' || ssh-add
 }
 
-move_in_path() {
-    # moves any items in PATH that contain the string provided in the
-    # first parameter to the front of PATH, if a second parameter is
-    # supplied it moves them to them back of PATH instead
-
-    local match_str="${1}"
-    local append="${2:-front}"
-    local default_IFS="${IFS}"
-    local match_path=''
-    local other_path=''
-
-    # temporarily change IFS to a colon so the items in PATH can be
-    # iterated over
-    IFS=':'
-
-    # note that if PATH is quoted here iteration won't work
-    for p in ${PATH}; do
-        if [[ "${p}" =~ "${match_str}" ]]; then
-            match_path+="${p}:"
-        else
-            other_path+="${p}:"
-        fi
-    done
-
-    if [ "${append}" == 'front' ]; then
-        PATH="${match_path}${other_path%:}"
-    else
-        PATH="${other_path}${match_path%:}"
-    fi
-
-    IFS="${default_IFS}"
-    export PATH
-}
-
-
-path() {
-    # print each file path in the PATH environment variable on separate line
-    echo "${PATH//:/$'\n'}"
-}
-
-recursive_dos2unix() {
-    # derived from https://stackoverflow.com/a/7068241/2167004
-    find "${@:-./}" -type f -exec dos2unix {} \;
-}
+launch_ssh_agent
 
 #----------------------------------------------------------------------
 # Settings
@@ -260,7 +293,8 @@ shopt -s nocaseglob
 # check the window size after each command  and adustments for wrapping
 shopt -s checkwinsize
 
-if [[ "${OSTYPE}" == 'cygwin' ]]; then
-    # ignore carriage returns in line endings
-    set -o igncr
-fi
+#----------------------------------------------------------------------
+# Shell Extensions
+#----------------------------------------------------------------------
+
+safe_source "${HOME}/.bashrc.trimet"
