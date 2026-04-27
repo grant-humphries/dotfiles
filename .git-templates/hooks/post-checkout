@@ -3,7 +3,6 @@
 # make regex matching below case insensitive
 shopt -s nocasematch
 
-
 config_user_by_service() {
     # values in the services array should have a corresponding section in
     # .gitconfig where the 'name' and 'email' for that service are specified
@@ -26,20 +25,6 @@ config_user_by_service() {
     done
 }
 
-config_file_mode_tracking_by_os() {
-    # if file permission tracking is enabled at the repo level and running
-    # cygwin-git clear that setting so the global config will apply.  When on
-    # Windows the global setting `core.fileMode = false` usually works best as
-    # it disables file mode tracking which Windows is not designed to do
-
-    local core_file_mode=$( git config --local core.fileMode )
-
-    if [[ "${OSTYPE}" == 'cygwin' && "${core_file_mode}" == 'true' ]]; then
-        git config --local --unset core.fileMode
-        echo 'local `core.fileMode` has been unset since checkout is via cygwin git'
-    fi
-}
-
 set_local_user_config() {
     local service="${1}"
     local config="${2}"
@@ -54,4 +39,3 @@ set_local_user_config() {
 
 
 config_user_by_service
-config_file_mode_tracking_by_os

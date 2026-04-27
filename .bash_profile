@@ -15,22 +15,8 @@ if [[ -z "${TEMP}" && -d '/tmp' ]]; then
     export TEMP='/tmp'
 fi
 
-if [[ "${OSTYPE}" == 'cygwin' ]]; then
-    # export setting made to this environment variable in .bashrc
-    export SHELLOPTS
-
-    # by default this variable is set to a
-    # directory that doesn't have adequate permissions, it is a
-    # temporary directory where setuptools unzips eggs
-    export PYTHON_EGG_CACHE='/tmp/python_eggs'
-    mkdir -p "${PYTHON_EGG_CACHE}"
-
-    # cygwin sets the `TZ` environment variable by default, but Windows
-    # Python doesn't know how to read the value in the format cygwin
-    # provides which causes the timezone to be UTC instead of local
-    unset TZ
 # macOS
-elif [[ "${OSTYPE}" =~ 'darwin' ]]; then
+if [[ "${OSTYPE}" =~ 'darwin' ]]; then
     # add homebrew to PATH
     add_to_path '/opt/homebrew/bin'
 

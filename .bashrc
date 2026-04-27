@@ -11,39 +11,7 @@ alias lsd='ls -d */'  # list directories only
 # encourage good javascript habits
 alias node='node --use_strict'
 
-if [[ "${OSTYPE}" == 'cygwin' ]]; then
-    # create aliases that allows access to cygwin python tools as
-    # miniconda is used as primary python
-    alias cyg-python='/usr/bin/python3.9'
-    alias cyg-pip='/usr/bin/pip3.9'
-
-    # launch new, child cygwin terminal
-    alias cyg-term='cygstart mintty bash -il'
-fi
-
-if [[ "${OSTYPE}" == 'cygwin' || "${OSTYPE}" == 'msys' ]]; then
-    # some interactive Windows executables don't function properly in
-    # cygwin terminals like MinTTY, running them with `winpty` resolves
-    # this problem and they are aliased here to always run in that manner
-
-    # more info:
-    # https://stackoverflow.com/questions/3250749
-    # https://github.com/rprichard/winpty/blob/master/README.md
-
-    declare -a winpty_programs=(
-        'node'
-        'pip'
-        'python'
-        'sencha'
-    )
-
-    for name in "${winpty_programs[@]}"; do
-        alias ${name}="winpty ${name}.exe"
-    done
-
-    # add tab completion for executables with `winpty`
-    complete -c winpty
-elif [[ "${OSTYPE}" == 'linux-gnu' ]]; then
+if [[ "${OSTYPE}" == 'linux-gnu' ]]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias egrep='egrep --color=auto'
