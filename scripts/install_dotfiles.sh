@@ -11,6 +11,7 @@ install_dotfiles() {
         ['.git-completion.bash']=''
         ['.git-prompt.sh']=''
         ['.git-templates']=''
+        ['.prettierrc']=''
         ['.vim']=''
         ['.vimrc']=''
     )
