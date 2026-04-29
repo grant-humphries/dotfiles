@@ -7,12 +7,6 @@
   "editor.formatOnSaveTimeout": 3000,
   "editor.renderWhitespace": "all",
   "editor.rulers": [80],
-
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.rulers": [88]
-  },
-
   "files.autoSave": "onFocusChange",
   "files.eol": "\n",
   "files.insertFinalNewline": true,
@@ -20,5 +14,10 @@
   "files.trimTrailingWhitespace": true,
   "prettier.eslintIntegration": true,
   "window.openFoldersInNewWindow": "on",
-  "workbench.colorTheme": "SynthWave '84"
+  "workbench.colorTheme": "SynthWave '84",
+
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.rulers": [88]
+  }
 }
