@@ -25,8 +25,9 @@
   },
 
   "[shellscript]": {
-    "editor.tabSize": 2,
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.detectIndentation": false,
     "editor.insertSpaces": true,
-    "editor.detectIndentation": false
+    "editor.tabSize": 2
   }
 }
