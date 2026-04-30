@@ -3,24 +3,24 @@ set -e
 
 install_dotfiles() {
   local -A dotfiles=(
-    ['.bashrc']=''
-    ['.bash_logout']=''
-    ['.bash_profile']=''
-    ['.inputrc']=''
-    ['.gitconfig']=''
-    ['.git-completion.bash']=''
-    ['.git-prompt.sh']=''
-    ['.git-templates']=''
-    ['.prettierrc']=''
-    ['.vim']=''
-    ['.vimrc']=''
+    ['.bashrc']=""
+    ['.bash_logout']=""
+    ['.bash_profile']=""
+    ['.inputrc']=""
+    ['.gitconfig']=""
+    ['.git-completion.bash']=""
+    ['.git-prompt.sh']=""
+    ['.git-templates']=""
+    ['.prettierrc']=""
+    ['.vim']=""
+    ['.vimrc']=""
   )
 
   # files for WSL only
   if [ -n "$WSL_INTEROP" ]; then
     dotfiles+=(
-      ['.bashrc.trimet']=''
-      ['.gitconfig.trimet']=''
+      ['.bashrc.trimet']=""
+      ['.gitconfig.trimet']=""
       ['settings.json']="${HOME}/.vscode-server/data/Machine"
     )
   fi
