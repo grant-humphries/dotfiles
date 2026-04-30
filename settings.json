@@ -1,10 +1,11 @@
 {
+  "$schema": "vscode://schemas/settings/user",
+
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "editor.formatOnSaveTimeout": 3000,
   "editor.renderWhitespace": "all",
   "editor.rulers": [80],
   "files.autoSave": "onFocusChange",
