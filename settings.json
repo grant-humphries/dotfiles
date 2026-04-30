@@ -6,6 +6,7 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
   "editor.renderWhitespace": "all",
   "editor.rulers": [80],
   "files.autoSave": "onFocusChange",
@@ -19,6 +20,10 @@
   "window.openFoldersInNewWindow": "on",
   "workbench.colorTheme": "SynthWave '84",
 
+  "[markdown]": {
+    "editor.tabSize": 2
+  },
+
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.rulers": [88]
@@ -27,7 +32,6 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.detectIndentation": false,
-    "editor.insertSpaces": true,
     "editor.tabSize": 2
   }
 }
