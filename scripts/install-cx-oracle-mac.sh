@@ -9,23 +9,23 @@
 set -e
 
 usage() {
-    echo "Usage: $0 [-c cx_Oracle version] [-v <oracle client version>]"
-    echo '  (-v requires the five number client version)'
-    exit 1
+  echo "Usage: $0 [-c cx_Oracle version] [-v <oracle client version>]"
+  echo '  (-v requires the five number client version)'
+  exit 1
 }
 
 while getopts ':c:v:' opt; do
-    case "${opt}" in
-        c)
-            cx_version="==${OPTARG}"
-            ;;
-        v)
-            client_version="${OPTARG}"
-            ;;
-        *)
-            usage
-            ;;
-    esac
+  case "${opt}" in
+  c)
+    cx_version="==${OPTARG}"
+    ;;
+  v)
+    client_version="${OPTARG}"
+    ;;
+  *)
+    usage
+    ;;
+  esac
 done
 
 # prompt user to download instead client
@@ -38,7 +38,7 @@ echo $'http://www.oracle.com/technetwork/topics/intel-macsoft-096467.html\n'
 read -p $'Are you ready to proceed?\n'
 
 if [ -z "${client_version}" ]; then
-    read -p 'Enter the 5 number Oracle client version: ' client_version
+  read -p 'Enter the 5 number Oracle client version: ' client_version
 fi
 
 # these environment variables must also be in your path when importing
@@ -51,7 +51,7 @@ rm -rf "${ORACLE_HOME}"
 mkdir -p "${ORACLE_HOME}"
 
 # split client version number at dots and write to array
-IFS='.' read -a version_array <<< "${client_version}"
+IFS='.' read -a version_array <<<"${client_version}"
 v_major="${version_array[0]}"
 v_minor="${version_array[1]}"
 
