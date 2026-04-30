@@ -17,8 +17,15 @@
   "gitlens.hovers.enabled": false,
   "window.openFoldersInNewWindow": "on",
   "workbench.colorTheme": "SynthWave '84",
+
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.rulers": [88]
+  },
+
+  "[shellscript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
   }
 }
