@@ -17,6 +17,8 @@
   "gitlens.currentLine.enabled": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.enabled": false,
+  "terminal.integrated.enablePersistentSessions": true,
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
   "window.openFoldersInNewWindow": "on",
   "workbench.colorTheme": "SynthWave '84",
 
