@@ -22,6 +22,7 @@
   "js/ts.tsdk.path": "./node_modules/typescript/lib",
   "window.openFoldersInNewWindow": "on",
   "workbench.colorTheme": "SynthWave '84",
+  "workbench.editor.revealIfOpen": true,
 
   "[markdown]": {
     "editor.tabSize": 2
