@@ -15,7 +15,6 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  "gitlens.currentLine.enabled": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.enabled": false,
   "terminal.integrated.enablePersistentSessions": true,
