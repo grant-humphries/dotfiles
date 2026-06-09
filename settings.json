@@ -17,7 +17,6 @@
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "gitlens.codeLens.enabled": false,
-  "gitlens.hovers.enabled": false,
   "gitlens.launchpad.indicator.polling.enabled": false,
   "terminal.integrated.enablePersistentSessions": true,
   "js/ts.tsdk.path": "./node_modules/typescript/lib",
