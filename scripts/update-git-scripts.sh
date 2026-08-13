@@ -8,7 +8,8 @@ dotfiles_dir="$(
   cd "$(dirname "${BASH_SOURCE[0]}")"
   dirname "$(pwd -P)"
 )"
-git_version=$(git --version | grep -Po '[0-9]+(\.[0-9]+)*')
+
+git_version=$(git --version | awk '{print $3}')
 git_repo="https://raw.githubusercontent.com/git/git/v${git_version}/contrib/completion"
 completion='git-completion.bash'
 prompt='git-prompt.sh'
