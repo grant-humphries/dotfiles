@@ -17,6 +17,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  "flake8.importStrategy": "fromEnvironment",
   "gitlens.codeLens.enabled": false,
   "gitlens.launchpad.indicator.polling.enabled": false,
   "terminal.integrated.enablePersistentSessions": true,
