@@ -37,6 +37,8 @@
     "editor.defaultFormatter": "mkhl.shfmt",
     "editor.detectIndentation": false
   },
+  // use two-space indents instead of tabs in bash scripts
+  "shfmt.executableArgs": ["-i", "2"],
 
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
