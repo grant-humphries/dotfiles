@@ -34,7 +34,7 @@
   },
 
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.defaultFormatter": "mkhl.shfmt",
     "editor.detectIndentation": false
   },
 
