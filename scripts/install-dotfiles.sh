@@ -17,12 +17,19 @@ install_dotfiles() {
     ['.vimrc']=""
   )
 
-  # files for WSL only
+  # WSL-specific dotfiles
   if [ -n "$WSL_INTEROP" ]; then
     dotfiles+=(
       ['.bashrc.trimet']=""
       ['.gitconfig.trimet']=""
       ['settings.json']="${HOME}/.vscode-server/data/Machine"
+    )
+  fi
+
+  # macOS-specific dotfiles
+  if [[ "${OSTYPE}" =~ darwin ]]; then
+    dotfiles+=(
+      ['settings.json']="${HOME}/Library/Application Support/Code/User"
     )
   fi
 
@@ -40,7 +47,7 @@ install_dotfiles() {
     local link="${dotfiles[$dotfile_name]:-${HOME}}/${dotfile_name}"
 
     # check if file or symlink already exists in link location
-    if [[ -e "${link}" ]]; then
+    if [[ -e "${link}" || -L "${link}" ]]; then
       mv "${link}" "${default_dotfiles}/"
       mv_flag=1
     fi
