@@ -37,10 +37,10 @@ install_dotfiles() {
     cd "$(dirname "${0}")"
     dirname "$(pwd -P)"
   )
-  local default_dotfiles='/tmp/default_dotfiles'
+  local backup_dotfiles="/tmp/backup_dotfiles/$(date +%Y%m%d-%H%M%S)"
   local mv_flag=
 
-  mkdir -p "${default_dotfiles}"
+  mkdir -p "${backup_dotfiles}"
 
   for dotfile_name in "${!dotfiles[@]}"; do
     local source="${dotfiles_repo}/${dotfile_name}"
@@ -48,7 +48,7 @@ install_dotfiles() {
 
     # check if file or symlink already exists in link location
     if [[ -e "${link}" || -L "${link}" ]]; then
-      mv "${link}" "${default_dotfiles}/"
+      mv "${link}" "${backup_dotfiles}/"
       mv_flag=1
     fi
 
@@ -59,7 +59,7 @@ install_dotfiles() {
 
   if [[ -n "${mv_flag}" ]]; then
     echo 'some dotfiles already existed in your home directory, they have '
-    echo "been moved to the following directory: ${default_dotfiles}"
+    echo "been moved to the following directory: ${backup_dotfiles}"
   fi
 }
 
