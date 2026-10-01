@@ -32,18 +32,23 @@ done
 #----------------------------------------------------------------------
 
 add_to_path() {
-  # supply a second parameter to have the add the new directory to
-  # the back rather than the front of the path
+  # supply a second parameter to add the directory to the back
+  # rather than the front of the path
   local add_dir="$1"
-  local append="${2:-front}"
+  local position="${2:-front}"
 
-  # only add if directory exists and is not already in path
-  if [[ -d "$add_dir" && ! "$PATH" =~ (^|:)${add_dir}(:|$) ]]; then
-    if [ "$append" == 'front' ]; then
-      export PATH="${add_dir}:${PATH}"
-    else
-      export PATH="${PATH}:${add_dir}"
-    fi
+  # only add directories that exist
+  if [[ ! -d "$add_dir" ]]; then
+    return
+  fi
+
+  # move existing entries to the requested position
+  if [[ "$PATH" =~ (^|:)${add_dir}(:|$) ]]; then
+    move_in_path "$add_dir" "$position"
+  elif [[ "$position" == 'front' ]]; then
+    export PATH="${add_dir}:${PATH}"
+  else
+    export PATH="${PATH}:${add_dir}"
   fi
 }
 
@@ -90,6 +95,8 @@ path() {
 # PATH Management
 #----------------------------------------------------------------------
 
+# these will only be added if they exist so platform specific handling
+# isn't needed
 paths_to_add=(
   "${HOME}/bin/Sencha/Cmd" # Sencha Cmd
   "${HOME}/.local/bin"     # Poetry (Python)
