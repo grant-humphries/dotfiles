@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 set -e
 
 # see the comments in the files that this scripts downloads for

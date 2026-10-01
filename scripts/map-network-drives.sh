@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 declare -A drive_mapping=(
   ['\\pstore\personal\humphrig']=p
